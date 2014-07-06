@@ -1,0 +1,10 @@
+.jumbotron {
+  padding: 30px;
+  margin-bottom: 30px;
+  color: black;
+  background-color: #66C093;
+}
+
+.page-header {
+  font-size: 200%;
+}
