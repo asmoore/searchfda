@@ -22,16 +22,26 @@ from sqlalchemy.orm import sessionmaker
 import app
 import settings
 
-def fetch_openfda():
+def fetch_drugevent_json(search,count):
     """
     Fetch json data from OpenFDA.
 
     """
-    test = "test"
-
-    return test
-
+    #openfda_url = "https://api.fda.gov/drug/event.json?search=receivedate:[20040101+TO+20150101]&count=receivedate"
     
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH&"
+    search = "receivedate:[20040101+TO+20150101]"
+    count = "receivedate"
+    openfda_url = ("https://api.fda.gov/drug/event.json?",
+        "api_key=",api_key,
+        "&search=",search,
+        "&count=",count)
+    response = urllib2.urlopen(nba_url)
+    jdata = json.load(response)
+
+    return jdata
+    
+        
 if __name__ == '__main__':
     #engine = create_engine('sqlite:///games.db')
     #engine = create_engine(os.environ['DATABASE_URL'])
