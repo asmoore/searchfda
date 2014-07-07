@@ -17,7 +17,9 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/barchart.js') }}"></script>
-    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
 <!-- BODY -->
     <body>
 <!-- HEADER --> 
@@ -49,6 +51,16 @@
           </div><!--/.container -->
       </div><!--/.navbar -->
 <!-- SEARCH -->
+    <div class="ui-widget">
+      <label for="city">Your city: </label>
+      <input id="city">
+      Powered by <a href="http://geonames.org">geonames.org</a>
+    </div>
+     
+    <div class="ui-widget" style="margin-top:2em; font-family:Arial">
+      Result:
+      <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+    </div>
 <!-- JUMBOTRON -->
         <div id="chart">
           <svg></svg>
