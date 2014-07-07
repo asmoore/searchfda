@@ -2,19 +2,54 @@
 <html lang="en">
     <head>
         <meta charset="UTF8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <title>Search FDA</title>
     </head>
-    <!-- CSS -->
+
+<!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nv.d3.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/searchfda.css') }}" />
 
-    <!-- SCRIPTS -->
+<!-- SCRIPTS -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/barchart.js') }}"></script>
     
-    <!-- BODY -->
+<!-- BODY -->
     <body>
+<!-- HEADER --> 
+        <div id="wrap">
+          <header>
+            <div class="col-sm-6">
+              <h1>Search FDA</h1>
+            </div>
+          </header>
+        </div>  
+
+<!-- NAVBAR -->
+      <div class="navbar navbar-custom navbar-inverse navbar-static-top" id="nav">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav nav-justified">
+                <li><a href="#about">Home</a></li>
+                <li><a href="#media">About</a></li>
+                <li><a href="#contact">Blog</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div><!--/.container -->
+      </div><!--/.navbar -->
+<!-- SEARCH -->
+<!-- JUMBOTRON -->
         <div id="chart">
           <svg></svg>
         </div>
