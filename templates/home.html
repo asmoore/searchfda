@@ -32,6 +32,7 @@
         </div>  
 
 <!-- NAVBAR -->
+
       <div class="navbar navbar-custom navbar-inverse navbar-static-top" id="nav">
           <div class="container">
             <div class="navbar-header">
@@ -50,17 +51,19 @@
             </div><!--/.nav-collapse -->
           </div><!--/.container -->
       </div><!--/.navbar -->
+
 <!-- SEARCH -->
-    <div class="ui-widget">
-      <label for="city">Your city: </label>
-      <input id="city">
-      Powered by <a href="http://geonames.org">geonames.org</a>
-    </div>
-     
-    <div class="ui-widget" style="margin-top:2em; font-family:Arial">
-      Result:
-      <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#">Adverse Events</a></li>
+      <li><a href="#">Recalls (coming soon)</a></li>
+      <li><a href="#">Labeling (coming soon)</a></li>
+      <div class="ui-widget">
+        <input id="search">
+        <div id="autocomplete" class="ui-widget-content"></div>
+      </div>
+    </ul>   
+
 <!-- JUMBOTRON -->
         <div id="chart">
           <svg></svg>
