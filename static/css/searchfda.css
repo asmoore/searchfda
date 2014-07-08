@@ -1,0 +1,42 @@
+/*Nav bar */
+
+.navbar-nav {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+	color:#17202A;
+}
+
+/*Bar chart*/
+
+div[id="chart"] {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	height: 400px;
+}
+
+/*Banner*/
+
+.container[id="banner"] {
+	height: 50px;
+}
+
+h1[id="banner"] {
+	font-size:30px;
+	color:white;
+}
+
+.jumbotron[id="banner"] {
+	padding-top: 48px;
+	padding-bottom: 0px;
+	background-color:#2F4054;
+}
+
+/* Search */
+
+.ui-widget {
+	visibility:hidden;
+}

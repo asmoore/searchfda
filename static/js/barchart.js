@@ -1,38 +1,47 @@
+
 data = [
   {
-    key: "Cumulative Return",
+    key: "Mylan drugs",
     values: [
       { 
-        "label" : "A" ,
-        "value" : -29.765957771107
-      } , 
-      { 
-        "label" : "B" , 
-        "value" : 0
-      } , 
-      { 
-        "label" : "C" , 
-        "value" : 32.807804682612
-      } , 
-      { 
-        "label" : "D" , 
-        "value" : 196.45946739256
-      } , 
-      { 
-        "label" : "E" ,
-        "value" : 0.19434030906893
-      } , 
-      { 
-        "label" : "F" , 
-        "value" : -98.079782601442
-      } , 
-      { 
-        "label" : "G" , 
-        "value" : -13.925743130903
-      } , 
-      { 
-        "label" : "H" , 
-        "value" : -5.1387322875705
+        "term": "ASPIRIN",
+        "count": 88729
+      },
+      {
+        "term": "METHOTREXATE SODIUM",
+        "count": 81382
+      },
+      {
+        "term": "METHOTREXATE",
+        "count": 79644
+      },
+      {
+        "term": "LISINOPRIL",
+        "count": 71716
+      },
+      {
+        "term": "FUROSEMIDE",
+        "count": 68537
+      },
+      {
+        "term": "LEVOTHYROXINE SODIUM",
+        "count": 59454
+      },
+      {
+        "term": "HYDROCHLOROTHIAZIDE",
+        "count": 56509
+      },
+      {
+        "term": "SIMVASTATIN",
+        "count": 56426
+      },
+      {
+        "term": "OMEPRAZOLE",
+        "count": 55349
+      },
+      {
+        "term": "ACETAMINOPHEN",
+        "count": 50715
       }
     ]
   }
@@ -40,8 +49,8 @@ data = [
 
 nv.addGraph(function() {
   var chart = nv.models.discreteBarChart()
-    .x(function(d) { return d.label })
-    .y(function(d) { return d.value })
+    .x(function(d) { return d.term })
+    .y(function(d) { return d.count })
     .staggerLabels(true)
     .tooltips(false)
     .showValues(true)
