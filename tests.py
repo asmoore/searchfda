@@ -17,16 +17,12 @@ class SearchNBATest(unittest.TestCase):
     	utils.fetch_openfda()
 
 
-    def test_get_schedule(self):
-    	utils.get_schedule(3)
-    
-
-    def test_get_game_threads(self):
-    	utils.get_game_threads()
+    def test_fetch_search(self):
+    	utils.fetch_search("search")
 
 
-    def test_get_standings(self):
-    	utils.get_standings()
+    def test_fetch_results(self):
+    	utils.fetch_results("search","category","view")
 
 
 if __name__ == '__main__':
