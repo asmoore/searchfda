@@ -40,6 +40,12 @@ def home():
 
     return render_template("home.html", test="test")
 
+@app.route('/<category>/<view>', strict_slashes=False)
+def profile(category, view):
+    jsondata = '{key: "Mylan drugs",values: [{"term": "ASPIRIN","count": 88729},{"term": "METHOTREXATE SODIUM","count": 81382},{"term": "METHOTREXATE","count": 79644}]}'
+    #test ="test"
+    return render_template('home.html', category=category,view=view, jsondata=jsondata)
+
 
 if __name__ == '__main__':
     

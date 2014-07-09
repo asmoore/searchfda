@@ -62,6 +62,19 @@
       </ul>   
     </div>  
 
+<br>
+
+category: {{ category }}
+
+<br>
+
+view: {{ view }}
+
+<br>
+
+jsondata: {{ jsondata }}
+
+<br>
 <!-- Chart -->
       <div id="chart">
         <svg></svg>
@@ -76,6 +89,11 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/barchart.js') }}"></script>
+    <script>
+    //$(function() {
+    //    var jsonData= '{{ jsondata }}';
+    //    barchart(jsondata)
+    </script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   </body>
 </html>
