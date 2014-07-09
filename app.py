@@ -35,16 +35,26 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///search.db'
 db = SQLAlchemy(app)
 
 
+#Home page
 @app.route("/")
 def home():
 
     return render_template("home.html", test="test")
 
-@app.route('/<category>/<view>', strict_slashes=False)
-def profile(category, view):
+#Search page
+@app.route('/<search>/', strict_slashes=False)
+def profile(search):
     jsondata = '{key: "Mylan drugs",values: [{"term": "ASPIRIN","count": 88729},{"term": "METHOTREXATE SODIUM","count": 81382},{"term": "METHOTREXATE","count": 79644}]}'
-    #test ="test"
+    #jsondata = utils.fetch_search(search)
     return render_template('home.html', category=category,view=view, jsondata=jsondata)
+
+#Result page
+@app.route('/<search>/<category>/<view>', strict_slashes=False)
+def profile(search, category, view):
+    #jsondata = utils.fetch_results(search,category,vew)
+    jsondata = '{key: "Mylan drugs",values: [{"term": "ASPIRIN","count": 88729},{"term": "METHOTREXATE SODIUM","count": 81382},{"term": "METHOTREXATE","count": 79644}]}'
+    return render_template('home.html', category=category,view=view, jsondata=jsondata)
+
 
 
 if __name__ == '__main__':
