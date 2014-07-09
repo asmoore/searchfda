@@ -22,6 +22,45 @@ from sqlalchemy.orm import sessionmaker
 import app
 import settings
 
+def fetch_search(search):
+    """
+    Fetch search results.
+
+    """
+    
+    return jsondata
+    
+    
+def fetch_results(search,category,view):
+    """
+    Fetch search results.
+
+    """
+    #if category == generic_name:
+        #if view = histogram
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+        #else: #time    
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+    #elif category == manufactuter_name:
+        #if view = histogram
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+        #else: #time    
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+    #elif category == reactionmeddrapt:
+        #if view = histogram
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+        #else: #time    
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+    #elif category == indication:
+        #if view = histogram
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+        #else: #time    
+            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
+    #else:
+        #return error
+    return jdata
+    
+    
 def fetch_drugevent_json(search,count):
     """
     Fetch json data from OpenFDA.
@@ -36,7 +75,7 @@ def fetch_drugevent_json(search,count):
         "api_key=",api_key,
         "&search=",search,
         "&count=",count)
-    response = urllib2.urlopen(nba_url)
+    response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
 
     return jdata
