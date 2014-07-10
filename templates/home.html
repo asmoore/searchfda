@@ -2,13 +2,15 @@
 {% block content %}
 
     <div class="search-container">
-    </div>
+      <div class="large-6 columns">
+        <input type="text" class="form-control" id="search-input" placeholder="Search for..." />
+        <div class="small-12 columns">
+        <span class="postfix">Search</span>
+      </div>
+      </div>
 
-    <div class="input-group">
-      <input type="text" class="form-control" id="search-input">      
-      <span class="input-group-addon" onclick="search();">Search</span>
-    </div>
-    
+    </div>      
+
     <script> 
       function search() {
         document.location.href = "/search=" + document.getElementById("search-input").value + "/" ;

@@ -49,15 +49,32 @@ h1[id="banner"] {
 
 .input-group {
 	position: absolute;
-	width:50%;
+	width:10%;
 	top:70%;
 	left:25%;
+}
+
+.large-6 {
+	position: absolute;
+	top:65%;
+	left:25%;
+}
+
+.small-12 {
+    border: 2px solid;
+    background-color: #A1B848;   
+}
+
+span.postfix{
+	border: none;
+	background: #A1B848;
+	color: white;
 
 }
 
 .form-control, .input-group-addon {
 	border: 2px solid;
-    border-radius: 25px;
+
     border-color:black;
     background-color:white;
     color:black;
