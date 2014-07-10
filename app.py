@@ -42,15 +42,14 @@ def home():
     return render_template("home.html", test="test")
 
 #Search page
-@app.route('/<search>/', strict_slashes=False)
-def profile(search):
-    jsondata = '{key: "Mylan drugs",values: [{"term": "ASPIRIN","count": 88729},{"term": "METHOTREXATE SODIUM","count": 81382},{"term": "METHOTREXATE","count": 79644}]}'
-    #jsondata = utils.fetch_search(search)
-    return render_template('home.html', category=category,view=view, jsondata=jsondata)
+@app.route('/search=<search>/', strict_slashes=False)
+def search(search):
+    #json_data = utils.fetch_search(search)
+    return render_template('search.html',searchterm=search)
 
 #Result page
-@app.route('/<search>/<category>/<view>', strict_slashes=False)
-def profile(search, category, view):
+@app.route('/search=<search>/<category>/<view>', strict_slashes=False)
+def results(search, category, view):
     #jsondata = utils.fetch_results(search,category,vew)
     jsondata = '{key: "Mylan drugs",values: [{"term": "ASPIRIN","count": 88729},{"term": "METHOTREXATE SODIUM","count": 81382},{"term": "METHOTREXATE","count": 79644}]}'
     return render_template('home.html', category=category,view=view, jsondata=jsondata)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<div class="header">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,14 +17,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/nv.d3.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/searchfda.css') }}" />
-
-
-  </head>
-
-
-  <body>
-
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -50,17 +43,24 @@
             </div>
       </div>
     </div>
+  </head>
+</div>
 
 
+<body>
 <!-- Content -->
+<div class="mainbody">
+  
+  {% block content %}{% endblock %}
 
-{% block content %}{% endblock %}
+</div>
+
+</body>
 
 <!-- Footer -->
-      <footer>
-      </footer>
-
-
+<div class="footer">
+  <footer></footer>
+</div>
 
 
 <!-- SCRIPTS -->
@@ -73,5 +73,5 @@
     //    barchart(jsondata)
     </script>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  </body>
+
 </html>

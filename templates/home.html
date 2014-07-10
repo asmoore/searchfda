@@ -1,39 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- HEADER -->
-    <div class="jumbotron" id="banner">
-      <div class="container" id="banner">
-        <h1 id="banner">Sumatriptan (generic name)</h1>
-      </div>
-      <div class="btn-toolbar" role="toolbar" style="margin: 0;">
-        <span>View:</span>
-        <span class="btn-group">
-          <button type="button" class="btn btn-default">Indication</button>
-          <button type="button" class="btn btn-default">Country</button>
-          <button type="button" class="btn btn-default">Reaction</button>
-          <button type="button" class="btn btn-default">Manufacturer</button>
-          <button type="button" class="btn btn-default">Reports</button>
-        </span>
-        <span>View:</span>
-        <span class="btn-group">
-          <button type="button" class="btn btn-default">Histogram</button>
-          <button type="button" class="btn btn-default">Time</button>
-        </span>
-      </div>
-    </div>  
+    <div class="search-container">
+    </div>
+
+    <div class="input-group">
+      <input type="text" class="form-control" id="search-input">      
+      <span class="input-group-addon" onclick="search();">Search</span>
+    </div>
     
-
-<br>
-
-category: {{ category }}
-
-<br>
-
-view: {{ view }}
-
-<br>
-
-jsondata: {{ jsondata }}
-
+    <script> 
+      function search() {
+        document.location.href = "/search=" + document.getElementById("search-input").value + "/" ;
+      }
+    </script>
 {% endblock %}
