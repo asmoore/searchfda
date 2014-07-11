@@ -4,4 +4,10 @@
 
 {{ searchterm }}
 
+{{ searchresults }}
+
+{% for result in searchresults %}
+    {{ result.name }}
+{% endfor %}
+
 {% endblock %}

@@ -25,6 +25,7 @@ import requests
 from pyquery import PyQuery
 import pytz
 
+import flask
 import utils
 import settings
 
@@ -44,8 +45,8 @@ def home():
 #Search page
 @app.route('/search=<search>/', strict_slashes=False)
 def search(search):
-    #json_data = utils.fetch_search(search)
-    return render_template('search.html',searchterm=search)
+    search_results = utils.fetch_search(search)
+    return render_template('search.html',searchterm=search, searchresults=flask.jsonify(search_results))
 
 #Result page
 @app.route('/search=<search>/<category>/<view>', strict_slashes=False)

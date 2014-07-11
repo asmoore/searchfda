@@ -27,7 +27,10 @@ def fetch_search(search):
     Fetch search results.
 
     """
-    
+    jsondata = """
+{"name":Sumatriptan", "category":"generic drug name"},
+{"name": "Imitrex", "category":"brand name"}
+"""
     return jsondata
     
     
