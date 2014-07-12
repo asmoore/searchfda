@@ -4,10 +4,10 @@
 
 {{ searchterm }}
 
-{{ searchresults }}
-
 {% for result in searchresults %}
-    {{ result.name }}
+    <h1>{{ result.name }}</h1>
+    <br>
+    <h2>{{ result.category }}</h2>
 {% endfor %}
 
 {% endblock %}

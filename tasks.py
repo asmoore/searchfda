@@ -21,11 +21,11 @@ def index_search():
 
     """
     root = test = os.path.dirname(os.path.realpath('__file__'))
-    schema = Schema(title=TEXT(stored=True), path=ID(stored=True), content=TEXT)
+    schema = Schema(name=TEXT(stored=True), category=ID(stored=True), type=TEXT)
     ix = create_in(root+"/data/", schema)
     writer = ix.writer()
-    writer.add_document(title=u"First document", path=u"/a", content=u"This is the first document we've added!")
-    writer.add_document(title=u"Second document", path=u"/b",content=u"The second one is even more interesting!")
+    writer.add_document(name=u"Sumatriptan", category=u"generic", type=u"adverse event")
+    writer.add_document(name=u"Sumatriptan Succinate", category=u"generic",type=u"adverse event")
     writer.commit()
 
 

@@ -19,8 +19,8 @@ import praw
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from whoosh.qparser import QueryParser
-
-if __name__ == '_
+from whoosh.index import open_dir
+from whoosh.fields import *
 
 import app
 import settings
@@ -34,11 +34,16 @@ def fetch_search(search):
 {"name":Sumatriptan", "category":"generic drug name"},
 {"name": "Imitrex", "category":"brand name"}
 """
-    query = QueryParser("content", ix.schema).parse("first")
-    results = searcher.search(query)
-    results[0]
-
-    return jsondata
+    search_results = []
+    root = test = os.path.dirname(os.path.realpath('__file__'))
+    ix = open_dir(root+"/data/")
+    with ix.searcher() as searcher:
+        query = QueryParser("name", ix.schema).parse("Sumatriptan")
+        results = searcher.search(query)
+        for hit in results:
+            search_results.append({"name": hit["name"],"category": hit["category"]})
+    
+    return search_results
     
     
 def fetch_results(search,category,view):
@@ -91,7 +96,7 @@ def fetch_drugevent_json(search,count):
     return jdata
     
 
-_main__':
+if __name__ == '__main__':
     #engine = create_engine('sqlite:///games.db')
     #engine = create_engine(os.environ['DATABASE_URL'])
     Session = sessionmaker(bind=engine)    

@@ -46,7 +46,8 @@ def home():
 @app.route('/search=<search>/', strict_slashes=False)
 def search(search):
     search_results = utils.fetch_search(search)
-    return render_template('search.html',searchterm=search, searchresults=flask.jsonify(search_results))
+    #flask.jsonify(search_results)
+    return render_template('search.html',searchterm=search, searchresults=search_results)
 
 #Result page
 @app.route('/search=<search>/<category>/<view>', strict_slashes=False)
