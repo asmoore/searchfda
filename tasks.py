@@ -26,6 +26,10 @@ def index_search():
     writer = ix.writer()
     writer.add_document(name=u"Sumatriptan", category=u"generic", type=u"adverse event")
     writer.add_document(name=u"Sumatriptan Succinate", category=u"generic",type=u"adverse event")
+    writer.add_document(name=u"Imitrex", category=u"brand", type=u"adverse event")
+    writer.add_document(name=u"Sumarotene", category=u"generic",type=u"adverse event")
+    writer.add_document(name=u"Sunpharma", category=u"manufacturer", type=u"adverse event")
+    writer.add_document(name=u"Sumetizide", category=u"generic",type=u"adverse event")
     writer.commit()
 
 

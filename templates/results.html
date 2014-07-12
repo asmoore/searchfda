@@ -1,4 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Results page</h1>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/barchart.css') }}" />
+
+<div id="chart">
+	<svg></svg>
+</div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='js/barchart.js') }}"></script>
+
+<script>
+	data = {{ results|safe }};
+	makeBarChart(data);
+</script>
+
 {% endblock %}

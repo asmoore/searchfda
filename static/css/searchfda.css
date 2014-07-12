@@ -60,6 +60,14 @@ h1[id="banner"] {
 	left:25%;
 }
 
+.large-6-2 {
+	position: relative;
+	width: 50%;
+	padding-left: 15%;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
 .small-12 {
     border: 2px solid;
     background-color: #A1B848;   
@@ -74,7 +82,6 @@ span.postfix{
 
 .form-control, .input-group-addon {
 	border: 2px solid;
-
     border-color:black;
     background-color:white;
     color:black;

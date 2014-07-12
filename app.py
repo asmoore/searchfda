@@ -42,6 +42,7 @@ def home():
 
     return render_template("home.html", test="test")
 
+
 #Search page
 @app.route('/search=<search>/', strict_slashes=False)
 def search(search):
@@ -49,13 +50,12 @@ def search(search):
     #flask.jsonify(search_results)
     return render_template('search.html',searchterm=search, searchresults=search_results)
 
+
 #Result page
 @app.route('/search=<search>/<category>/<view>', strict_slashes=False)
 def results(search, category, view):
-    #jsondata = utils.fetch_results(search,category,vew)
-    jsondata = '{key: "Mylan drugs",values: [{"term": "ASPIRIN","count": 88729},{"term": "METHOTREXATE SODIUM","count": 81382},{"term": "METHOTREXATE","count": 79644}]}'
-    return render_template('home.html', category=category,view=view, jsondata=jsondata)
-
+    results = utils.fetch_results(search,category,view)
+    return render_template('results.html', results=results)
 
 
 if __name__ == '__main__':

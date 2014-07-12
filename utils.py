@@ -19,6 +19,7 @@ import praw
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from whoosh.qparser import QueryParser
+from whoosh.query import FuzzyTerm
 from whoosh.index import open_dir
 from whoosh.fields import *
 
@@ -38,10 +39,10 @@ def fetch_search(search):
     root = test = os.path.dirname(os.path.realpath('__file__'))
     ix = open_dir(root+"/data/")
     with ix.searcher() as searcher:
-        query = QueryParser("name", ix.schema).parse("Sumatriptan")
+        query = QueryParser("name", ix.schema, termclass=FuzzyTerm).parse(search)
         results = searcher.search(query)
-        for hit in results:
-            search_results.append({"name": hit["name"],"category": hit["category"]})
+        for hit in results[0:5]:
+            search_results.append({"name": hit["name"],"category": hit["category"], "view":"indication"})
     
     return search_results
     
@@ -73,7 +74,14 @@ def fetch_results(search,category,view):
             #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
     #else:
         #return error
-    return jdata
+    openfda_url = "https://api.fda.gov/drug/event.json?search=patient.drug.openfda.generic_name:Sumatriptan&count=patient.drug.drugindication&limit=30"
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH&"
+    response = urllib2.urlopen(openfda_url)
+    jdata = json.load(response)
+    results = [{"key":"blah","values":jdata["results"]}]
+
+    return results
+
     
     
 def fetch_drugevent_json(search,count):
