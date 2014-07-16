@@ -3,16 +3,41 @@
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/barchart.css') }}" />
 
-<div id="chart">
-	<svg></svg>
+
+<div class="large-6 columns">
+	<h3 class="show-for-small">Sumatriptan<hr/></h3>
+	<div class="panel" id="chart-panel">
+		<dl class="tabs pill">
+		  <dd class="active"><a href="#pillTab1">Indications</a></dd>
+		  <dd><a href="#pillTab2">Reactions</a></dd>
+		  <dd class="hide-for-small"><a href="#pillTab3">Manufacturers</a></dd>
+		  <dd class="hide-for-small"><a href="#pillTab3">Reports</a></dd>
+		</dl>
+		<svg class="chart"></svg>
+	</div>
 </div>
 
+<div class="large-6 columns">
+	<div class="info-panel">
+		<h4 class="hide-for-small">What is sumatriptan succinate?<hr/></h4>
+		<h5 class="subheader"> 
+Sumatriptan succinate is a prescription medicine used to treat acute migraine headaches with or without aura and acute cluster headaches in adults who have been diagnosed with migraine or cluster headaches. 
+Sumatriptan succinate is not used to treat other types of headaches such as hemiplegic (that make you unable to move on one side of your body) or basilar (rare form of migraine with aura) migraines. 
+Sumatriptan succinate is not used to prevent or decrease the number of migraine or cluster headaches you have. 
+It is not known if sumatriptan succinate is safe and effective in children under 18 years of age.
+</h5>
+	</div>
+</div>
+
+
+    
+ 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
 <script src="{{ url_for('static', filename='js/barchart.js') }}"></script>
 
 <script>
-	data = {{ results|safe }};
+	data = {{ results|tojson|safe }};
 	makeBarChart(data);
 </script>
 

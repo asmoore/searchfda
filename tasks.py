@@ -13,6 +13,10 @@ import os
 
 from whoosh.index import create_in
 from whoosh.fields import *
+from whoosh.index import open_dir
+
+import urllib2
+import json
 
 def index_search():
     """
@@ -21,17 +25,25 @@ def index_search():
 
     """
     root = test = os.path.dirname(os.path.realpath('__file__'))
-    schema = Schema(name=TEXT(stored=True), category=ID(stored=True), type=TEXT)
+    schema = Schema(name=TEXT(stored=True), category=ID(stored=True))
     ix = create_in(root+"/data/", schema)
     writer = ix.writer()
-    writer.add_document(name=u"Sumatriptan", category=u"generic", type=u"adverse event")
-    writer.add_document(name=u"Sumatriptan Succinate", category=u"generic",type=u"adverse event")
-    writer.add_document(name=u"Imitrex", category=u"brand", type=u"adverse event")
-    writer.add_document(name=u"Sumarotene", category=u"generic",type=u"adverse event")
-    writer.add_document(name=u"Sunpharma", category=u"manufacturer", type=u"adverse event")
-    writer.add_document(name=u"Sumetizide", category=u"generic",type=u"adverse event")
+    
+    dailymed_url = "http://dailymed.nlm.nih.gov/dailymed/services/v2/drugnames.json?pagesize=100&page=1"
+    while(True):
+        if dailymed_url != "null":
+            response = urllib2.urlopen(dailymed_url)
+            jdata = json.load(response)
+            dailymed_url = jdata["metadata"]["next_page_url"]
+            drugs = jdata["data"]
+            for drug in drugs:
+                 writer.add_document(name=unicode(drug["drug_name"]), category=unicode(drug["name_type"]))
+        else:
+            break
     writer.commit()
 
 
 if __name__ == '__main__':
-    index_search()
+    append_index()
+
+    

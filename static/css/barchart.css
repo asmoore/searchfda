@@ -1,3 +1,59 @@
-.nvd3 .nv-axis.nv-x {
-    font-size: 8pt;
+.chart {
+  background: white;
+  margin: 5px;
+  top-padding: 20px;
+}
+
+.chart rect {
+  stroke: white;
+  fill: steelblue;
+}
+
+.chart rect:hover {
+  fill: brown;
+}
+
+.chart text {
+  fill: steelblue;
+  font-size:10pt;
+  font-family: Arial;
+}
+
+.chart line {
+  stroke: #c1c1c1;
+}
+
+.chart .rule {
+  fill: #000;
+  font-size: 10pt;
+  font-family: Arial;
+}
+
+.chart .name {
+  fill: #000;
+  font-size: 10pt;
+  font-family: Arial;
+}
+
+.chart text.name {
+  fill: #000;
+}
+
+.panel[id="chart-panel"] {
+	background-color: white;
+}
+
+.panel[id="info-panel"] {
+	background-color: white;
+}
+
+.large-6 {
+	position: relative;
+	padding-top: 20px;
+	left: 0%;
+}
+
+.tabs dd > a {
+background-color: steelblue;
+color: white;
 }

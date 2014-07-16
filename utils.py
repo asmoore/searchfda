@@ -52,35 +52,24 @@ def fetch_results(search,category,view):
     Fetch search results.
 
     """
-    #if category == generic_name:
-        #if view = histogram
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-        #else: #time    
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-    #elif category == manufactuter_name:
-        #if view = histogram
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-        #else: #time    
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-    #elif category == reactionmeddrapt:
-        #if view = histogram
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-        #else: #time    
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-    #elif category == indication:
-        #if view = histogram
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-        #else: #time    
-            #openfda_url = "https://api.fda.gov/drug/event.json?search=" + "___" + "&count=" + "___"
-    #else:
-        #return error
-    openfda_url = "https://api.fda.gov/drug/event.json?search=patient.drug.openfda.generic_name:Sumatriptan&count=patient.drug.drugindication&limit=30"
-    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH&"
+
+
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
+    if category == "B":
+        search = "patient.drug.openfda.brand_name:"+search
+    else:
+        search = "patient.drug.openfda.generic_name:"+search
+    count = "patient.drug.drugindication.exact"
+    openfda_url = ''.join(["https://api.fda.gov/drug/event.json?",
+        "api_key=",api_key,
+        "&search=",search,
+        "&count=",count,
+        "&limit=30"])
+    print openfda_url
     response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
-    results = [{"key":"blah","values":jdata["results"]}]
 
-    return results
+    return jdata["results"]
 
     
     
