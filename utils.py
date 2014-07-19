@@ -14,6 +14,7 @@ import json
 from datetime import datetime, time, timedelta, date
 import re
 import os
+from pyquery import PyQuery
 
 import praw
 from sqlalchemy import create_engine
@@ -65,13 +66,26 @@ def fetch_results(search,category,view):
         "&search=",search,
         "&count=",count,
         "&limit=30"])
-    print openfda_url
     response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
 
     return jdata["results"]
 
-    
+
+def fetch_description():
+    """
+    fetch description from MedlinePlus
+    """
+    search = "Sumatriptan"
+    medline_url = "http://apps.nlm.nih.gov/medlineplus/services/mpconnect_service.cfm?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.dn="+search+"&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json"
+    response = urllib2.urlopen(medline_url)
+    jdata = json.load(response)
+    description_url = jdata["feed"]["entry"][0]["link"][0]["href"]    
+    pq = PyQuery(description_url)
+    description = pq("p")[0].text
+
+    return description    
+
     
 def fetch_drugevent_json(search,count):
     """

@@ -1,6 +1,13 @@
 /* General layout */
 .header {outline:1px solid red; height: 40px; position:absolute; top:0px; width:100%;}
-.mainbody {outline:1px solid green; min-height:200px; position:absolute; top:40px; width:100%;}
+.mainbody {
+	outline:1px solid green; 
+	min-height:200px; 
+	position:absolute; 
+	top:40px; 
+	width:100%;
+	background-color:#2F4054;
+}
 
 /*Nav bar */
 
@@ -53,24 +60,6 @@ h1[id="banner"] {
 	left:25%;
 }
 
-.large-6 {
-	position: absolute;
-	top:65%;
-	left:25%;
-}
-
-.large-6-2 {
-	position: relative;
-	width: 50%;
-	padding-left: 15%;
-	padding-bottom: 20px;
-	padding-top: 20px;
-}
-
-.small-12 {
-    border: 2px solid;
-    background-color: #A1B848;   
-}
 
 span.postfix{
 	border: none;
@@ -84,4 +73,22 @@ span.postfix{
     border-color:black;
     background-color:white;
     color:black;
+}
+
+.row[id="results-row"] {
+	background-color:white;
+    margin-top: 20px;
+    outline:1px solid green;
+    padding-top: 10px; 
+}
+
+.row[id="footer-row"] {
+	background-color:white;
+    margin-top: 20px;
+    outline:1px solid green;
+    padding-top: 10px; 
+}
+
+.row[id="search-row"] {
+    margin-top: 20px;
 }

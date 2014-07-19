@@ -9,10 +9,10 @@ for (i = 0; i < results.length; i++) {
 }
 
 var chart,
-    width = 400,
+    width = 200,
     bar_height = 20,
     height = bar_height * term.length,
-    left_width = 210,
+    left_width = 150,
     x, 
     yScore, 
     yName,

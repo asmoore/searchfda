@@ -3,42 +3,106 @@
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/barchart.css') }}" />
 
+<div class="row" id="search-row">
 
-<div class="large-6 columns">
-	<h3 class="show-for-small">Sumatriptan<hr/></h3>
-	<div class="panel" id="chart-panel">
-		<dl class="tabs pill">
-		  <dd class="active"><a href="#pillTab1">Indications</a></dd>
-		  <dd><a href="#pillTab2">Reactions</a></dd>
-		  <dd class="hide-for-small"><a href="#pillTab3">Manufacturers</a></dd>
-		  <dd class="hide-for-small"><a href="#pillTab3">Reports</a></dd>
-		</dl>
+<div class="search-container">
+	<input type="text" class="form-control" id="search-input" value="Sumatriptan"/>
+	<span class="postfix" onclick="search()">Search</span>
+</div> 
+
+</div>
+
+<div class="row" id="results-row">
+  
+     
+<div class="large-3 columns ">
+  <div class="panel">
+    <a href="#"><img src="http://rximage.nlm.nih.gov/image/images/gallery/original/00093-7155-56_RXNAVIMAGE10_A227D15E.jpg"/></a>
+      <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+      	<br>
+      	<section class="section">
+      		<h5 class="title"><a href="#">Description</a></h5>
+      	</section>
+	    <section class="section">
+	        <h5 class="title"><a href="#">Adverse Events</a></h5>
+	    </section>
+        <section class="section">
+            <h5 class="title"><a href="#">Recalls</a></h5>
+        </section>
+    </div>
+  </div>
+</div>
+     
+    <div class="large-6 columns">
+ 
+       
+<div class="row">
+	<div class="large-12 columns">
+		<h4>Sumatriptan</h4>
+		<p>{{ description }}
+		<br>
+		source: DailyMed
+		</p>
+	</div>
+</div>
+
+
+<hr/>
+
+<div class="row">
+	<div class="large-12 columns">
+		<h4>Adverse Events</h4>
 		<svg class="chart"></svg>
 	</div>
 </div>
 
-<div class="large-6 columns">
-	<div class="info-panel">
-		<h4 class="hide-for-small">What is sumatriptan succinate?<hr/></h4>
-		<h5 class="subheader"> 
-Sumatriptan succinate is a prescription medicine used to treat acute migraine headaches with or without aura and acute cluster headaches in adults who have been diagnosed with migraine or cluster headaches. 
-Sumatriptan succinate is not used to treat other types of headaches such as hemiplegic (that make you unable to move on one side of your body) or basilar (rare form of migraine with aura) migraines. 
-Sumatriptan succinate is not used to prevent or decrease the number of migraine or cluster headaches you have. 
-It is not known if sumatriptan succinate is safe and effective in children under 18 years of age.
-</h5>
-	</div>
+<hr/>
+
+<div class="row">
+    <div class="large-12 columns">
+    	<h4>Recalls</h4>
+    	<p><strong>Some Person said:</strong> Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong.</p>
+    </div>
+  </div>       
 </div>
 
+<aside class="large-3 columns hide-for-small">
+	<p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+	<p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+</aside>
 
-    
+</div>
+
+<footer class="row" id="footer-row">
+<div class="large-12 columns">
+  <hr/>
+  <div class="row">
+    <div class="large-5 columns">
+      <p>SearchFDA.</p>
+    </div>
+    <div class="large-7 columns">
+      <ul class="inline-list right">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</footer>
+
  
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
 <script src="{{ url_for('static', filename='js/barchart.js') }}"></script>
-
 <script>
 	data = {{ results|tojson|safe }};
 	makeBarChart(data);
+</script>
+<script> 
+  function search() {
+    document.location.href = "/search=" + document.getElementById("search-input").value + "/" ;
+  }
 </script>
 
 {% endblock %}

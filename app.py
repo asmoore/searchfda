@@ -55,7 +55,8 @@ def search(search):
 @app.route('/search=<search>/<category>/<view>', strict_slashes=False)
 def results(search, category, view):
     results = utils.fetch_results(search,category,view)
-    return render_template('results.html', results=results)
+    description = utils.fetch_description()
+    return render_template('results.html', results=results, description=description)
 
 
 if __name__ == '__main__':
