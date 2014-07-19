@@ -21,8 +21,12 @@ class SearchNBATest(unittest.TestCase):
     	utils.fetch_search("search")
 
 
-    def test_fetch_results(self):
+    def test_fetch_adverse_events(self):
     	utils.fetch_results("search","category","view")
+
+
+    def test_fetch_description(self):
+    	utils.fetch_results("search")
 
 
 if __name__ == '__main__':

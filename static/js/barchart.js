@@ -1,4 +1,4 @@
-function makeBarChart(results) {
+function makeBarChart(results,chart_name) {
 
 var term = [];
 var count = [];
@@ -32,7 +32,7 @@ yName = d3.scale.ordinal()
     .domain(term)
     .rangeBands([0, (bar_height + 2 * gap) * term.length]);
 
-chart = d3.select(".chart")
+chart = d3.select(chart_name)
     .attr('class', 'chart')
     .attr('width', left_width + width)
     .attr('height', (bar_height + 2 * gap) * term.length);

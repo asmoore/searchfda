@@ -48,13 +48,12 @@ def fetch_search(search):
     return search_results
     
     
-def fetch_results(search,category,view):
+def fetch_adverse_events(search,category,view):
     """
     Fetch search results.
 
     """
-
-
+    limit="20";
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
     if category == "B":
         search = "patient.drug.openfda.brand_name:"+search
@@ -65,18 +64,39 @@ def fetch_results(search,category,view):
         "api_key=",api_key,
         "&search=",search,
         "&count=",count,
-        "&limit=30"])
+        "&limit=",limit])
     response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
 
     return jdata["results"]
 
 
-def fetch_description():
+def fetch_recalls(search):
+    """
+    Fetch recalls from MedlinePlus.
+
+    """
+    limit="1";
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
+    search = "openfda.substance_name:"+search
+    count = "openfda.manufacturer_name.exact"
+    openfda_url = ''.join(["https://api.fda.gov/drug/enforcement.json?",
+        "api_key=",api_key,
+        "&search=",search,
+        "&count=",count,
+        "&limit=",limit])
+    print openfda_url
+    response = urllib2.urlopen(openfda_url)
+    jdata = json.load(response)
+
+    return jdata["results"]
+
+
+def fetch_description(search):
     """
     fetch description from MedlinePlus
+
     """
-    search = "Sumatriptan"
     medline_url = "http://apps.nlm.nih.gov/medlineplus/services/mpconnect_service.cfm?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.dn="+search+"&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json"
     response = urllib2.urlopen(medline_url)
     jdata = json.load(response)
