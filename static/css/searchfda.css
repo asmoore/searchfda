@@ -1,11 +1,14 @@
 /* General layout */
 .header {outline:1px solid red; height: 40px; position:absolute; top:0px; width:100%;}
 .mainbody {
-	outline:1px solid green; 
 	min-height:200px; 
 	position:absolute; 
 	top:40px; 
 	width:100%;
+	background-color:#2F4054;
+}
+
+body {
 	background-color:#2F4054;
 }
 
@@ -91,4 +94,30 @@ span.postfix{
 
 .row[id="search-row"] {
     margin-top: 20px;
+}
+
+.splash {
+	max-height: 400px;
+	width: 100%;
+}
+
+img[id="splash-image"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.splash-header h1, h3{
+	color:white;
+	text-align:center;
+}
+
+h3[id="search-title"]{
+    text-align:center;
+    text-transform: lowercase;
+    padding-bottom: 10px;
+}
+
+p[id="search-subtitle"]{
+	text-align:center;
 }

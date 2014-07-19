@@ -1,27 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="large-6-2 columns">
-	<input type="text" class="form-control" id="search-input" placeholder="{{ searchterm }}" />
-	<div class="small-12 columns">
-	  <span class="postfix" onclick="search()">Search</span>
-	</div>
+<div class="row" id="search-row">
+
+  <div class="search-container">
+    <input type="text" class="form-control" id="search-input" value="Sumatriptan"/>
+    <span class="postfix" onclick="search()">Search</span>
+  </div> 
+
 </div>
 
-
-<div class="row">
-  <div class="four columns">
+<div class="row" id="results-row">
+  
+  <div class="large-3 columns ">
+    <div class="panel">
+      <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+      </div>
+    </div>
   </div>
-  <div class="four columns">
+     
+  <div class="large-6 columns">
     {% for result in searchresults %}
-	    <h3><a href="/search={{ result.name }}/{{ result.category }}/indication">{{ result.name }}</a></h3>
-	    <br>
-	    {{ result.category }}
-	    <br>
-	{% endfor %}
+    <h3 id"search-title"><a href="/search={{ result.name }}/{{ result.category }}/indication">{{ result.name }}</a></h3>
+    <br>
+    <p id="search-subtitle">{{ result.category }}</p>
+    <br>
+    {% endfor %}
   </div>
-  <div class="four columns">
-  </div>
+
+  <aside class="large-3 columns hide-for-small">
+    <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+    <p><img src="http://placehold.it/300x440&text=[ad]"/></p>
+  </aside>
+
 </div>
 
 <script> 

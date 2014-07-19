@@ -43,7 +43,13 @@ def fetch_search(search):
         query = QueryParser("name", ix.schema, termclass=FuzzyTerm).parse(search)
         results = searcher.search(query)
         for hit in results[0:5]:
-            search_results.append({"name": hit["name"],"category": hit["category"], "view":"indication"})
+            if hit["category"] == "B":
+                category = "Brand name drug"
+            elif hit["category"] == "G":
+                category = "Generic drug"
+            else:
+                category = hit["category"]
+            search_results.append({"name": hit["name"],"category": category, "view":"indication"})
     
     return search_results
     
