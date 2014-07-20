@@ -27,7 +27,7 @@ from whoosh.fields import *
 import app
 import settings
 
-def fetch_search(search):
+def fetch_search(search,page):
     """
     Fetch search results.
 
@@ -41,17 +41,18 @@ def fetch_search(search):
     ix = open_dir(root+"/data/")
     with ix.searcher() as searcher:
         query = QueryParser("name", ix.schema, termclass=FuzzyTerm).parse(search)
-        results = searcher.search(query)
-        for hit in results[0:5]:
+        results = searcher.search_page(query,page,10)
+        total = results.total
+        for hit in results:
             if hit["category"] == "B":
                 category = "Brand name drug"
             elif hit["category"] == "G":
                 category = "Generic drug"
             else:
                 category = hit["category"]
-            search_results.append({"name": hit["name"],"category": category, "view":"indication"})
-    
-    return search_results
+            search_results.append({"name": hit["name"].capitalize(),"category": category, "view":"indication"})
+    #total = 2
+    return (search_results,total)
     
     
 def fetch_adverse_events(search,category,view):

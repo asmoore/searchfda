@@ -4,7 +4,7 @@
 <div class="row" id="search-row">
 
   <div class="search-container">
-    <input type="text" class="form-control" id="search-input" value="Sumatriptan"/>
+    <input type="text" class="form-control" id="search-input" value="{{ searchterm }}" onkeydown="if (event.keyCode == 13) { search()}"/>
     <span class="postfix" onclick="search()">Search</span>
   </div> 
 
@@ -21,11 +21,30 @@
      
   <div class="large-6 columns">
     {% for result in searchresults %}
-    <h3 id"search-title"><a href="/search={{ result.name }}/{{ result.category }}/indication">{{ result.name }}</a></h3>
-    <br>
-    <p id="search-subtitle">{{ result.category }}</p>
-    <br>
+    <li id="search-list">
+      <h5 id"search-title"><a href="/search={{ result.name }}/{{ result.category }}/indication">{{ result.name }}</a></h5>
+      <p id="search-subtitle">{{ result.category }}</p>
+    </li>
     {% endfor %}
+
+    <ul class="pagination">
+      {%- for page in pagination.iter_pages() %}
+        {% if page != 1 %}
+          {% if page %}
+            {% if page != currentpage %}
+              <li><a href="/search={{ searchterm }}/page/{{ page }}">{{ page }}</a></li>
+            {% else %}
+              <li class="current"><a href="/search={{ searchterm }}/page/{{ page }}">{{ page }}</a></li>
+            {% endif %}
+          {% else %}
+            <li class="unavailable"><a href="">&hellip;</a></li>
+          {% endif %}
+        {% else %}
+          <li><a href="/search={{ searchterm }}/">{{ page }}</a></li>
+        {% endif%}
+      {%- endfor %}
+    </ul>
+
   </div>
 
   <aside class="large-3 columns hide-for-small">

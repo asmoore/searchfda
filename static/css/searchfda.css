@@ -112,14 +112,22 @@ img[id="splash-image"] {
 	text-align:center;
 }
 
-h3[id="search-title"]{
-    text-align:center;
+li[id="search-list"]{
+	list-style: none;
+}
+
+h4[id="search-title"]{
+    text-align:left;
     text-transform: lowercase;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 p[id="search-subtitle"]{
-	text-align:center;
+	text-align:left;
+	padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 10px;
 }
 
 .ui-helper-hidden-accessible{display:none}
