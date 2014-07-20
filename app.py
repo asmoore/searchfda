@@ -36,11 +36,21 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///search.db'
 db = SQLAlchemy(app)
 
 
-#Home page
-@app.route("/")
-def home():
+#Autocomplete
+@app.route('/autocomplete', methods=['POST'])
+def autcomplete():
+    data = request.data
+    search_results = utils.fetch_search(data)
+    return search_results[0]["name"]
+    #return search_results
 
-    return render_template("home.html", test="test")
+#Home page
+@app.route("/", methods=['GET'])
+def home():
+    
+    autocomplete = [{"result":"CSS"},{"result":"JavaScript"},{"result":"Java"},{"result":"Ruby"},{"result":"PHP"}]
+    search_results = utils.fetch_search("sumatriptan")
+    return render_template("home.html", autocomplete=autocomplete, searchresults=search_results)
 
 
 #Search page
