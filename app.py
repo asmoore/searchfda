@@ -38,7 +38,7 @@ db = SQLAlchemy(app)
 
 #Autocomplete
 @app.route('/autocomplete', methods=['POST'])
-def autcomplete():
+def autocomplete():
     data = request.data
     search_results = utils.fetch_search(data)
     return search_results[0]["name"]
@@ -47,7 +47,6 @@ def autcomplete():
 #Home page
 @app.route("/", methods=['GET'])
 def home():
-    
     autocomplete = [{"result":"CSS"},{"result":"JavaScript"},{"result":"Java"},{"result":"Ruby"},{"result":"PHP"}]
     search_results = utils.fetch_search("sumatriptan")
     return render_template("home.html", autocomplete=autocomplete, searchresults=search_results)
