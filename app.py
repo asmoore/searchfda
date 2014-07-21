@@ -49,7 +49,7 @@ def autocomplete():
 @app.route("/", methods=['GET'])
 def home():
     autocomplete = [{"result":"CSS"},{"result":"JavaScript"},{"result":"Java"},{"result":"Ruby"},{"result":"PHP"}]
-    search_results = utils.fetch_search("sumatriptan")
+    search_results = utils.fetch_search("sumatriptan",1)
     return render_template("home.html", autocomplete=autocomplete, searchresults=search_results)
 
 
@@ -112,3 +112,4 @@ if __name__ == '__main__':
         create_data()
     else:
         app.run(debug=True, port=65010)
+

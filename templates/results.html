@@ -6,8 +6,13 @@
 <div class="row" id="search-row">
 
   <div class="search-container">
-  	<input type="text" class="form-control" id="search-input" value="Sumatriptan"/>
-  	<span class="postfix" onclick="search()">Search</span>
+  	<div class="small-10 columns">
+      <input type="text" id="search-input" list="json-datalist" placeholder="Search for..." onkeydown="if (event.keyCode == 13) { search()}">
+      <datalist id="json-datalist"></datalist>
+    </div>
+    <div class="small-2 columns">
+      <span class="postfix" onclick="search()">Search</span>
+    </div>
   </div> 
 
 </div>

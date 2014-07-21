@@ -1,19 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
+<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/webicons.css') }}" />
 
 <div class="row" id="search-row">
   <div class="splash">
     <img id="splash-image" src="{{ url_for('static', filename='images/splash-1.png') }}"/>
   </div>
   <div class="splash-header">
-    <h1>SearchFDA</h1>
-    <h3>Search through public FDA data</h3>
+    <h1 id="home">Search public data on drugs</h1>
+  </div>
+  <div class="social">
+    <a href="test" class="webicon large facebook"></a>
+    <a href="test" class="webicon large twitter"></a>
+    <a href="test" class="webicon large github"></a>
+    <a href="test" class="webicon large reddit"></a>
   </div>
   <div class="search-container">
-    <input type="text" id="search-input" list="json-datalist" placeholder="Search for..." onkeydown="if (event.keyCode == 13) { search()}">
-    <datalist id="json-datalist"></datalist>
-    <span class="postfix" onclick="search()">Search</span>
+    <div class="small-10 columns">
+      <input type="text" id="search-input" list="json-datalist" placeholder="Search for..." onkeydown="if (event.keyCode == 13) { search()}">
+      <datalist id="json-datalist"></datalist>
+    </div>
+    <div class="small-2 columns">
+      <span class="postfix" onclick="search()">Search</span>
+    </div>
   </div>      
 </div>
 
