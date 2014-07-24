@@ -73,6 +73,15 @@ def results(search, category, view):
     return render_template('results.html', description=description, adverse_events=adverse_events, recalls=recalls)
 
 
+#Recalls page
+@app.route('/recall/')
+def search():
+    recalls = utils.fetch_recalls(search)
+    keys = recalls[0].keys()
+    values = recalls[0].values()
+    return render_template('recall.html', recalls=recalls[0])
+
+
 class Pagination(object):
 
     def __init__(self, page, per_page, total_count):

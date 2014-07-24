@@ -167,3 +167,12 @@ h3[id="home"] {
 	margin-left: 20px;
 	margin-right: 20px;
 }
+
+.label[id="list-label"] {
+	min-width:120px;
+}
+
+li[id="recall-list"] {
+	padding-bottom: 20px;
+	list-style: none;
+}
