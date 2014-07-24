@@ -32,10 +32,6 @@ def fetch_search(search,page):
     Fetch search results.
 
     """
-    jsondata = """
-{"name":Sumatriptan", "category":"generic drug name"},
-{"name": "Imitrex", "category":"brand name"}
-"""
     search_results = []
     root = test = os.path.dirname(os.path.realpath('__file__'))
     ix = open_dir(root+"/data/")
@@ -43,6 +39,7 @@ def fetch_search(search,page):
         query = QueryParser("name", ix.schema, termclass=FuzzyTerm).parse(search)
         results = searcher.search_page(query,page,10)
         total = results.total
+        print total
         for hit in results:
             if hit["category"] == "B":
                 category = "Brand name drug"

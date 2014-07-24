@@ -116,11 +116,12 @@ li[id="search-list"]{
 	list-style: none;
 }
 
-h4[id="search-title"]{
+h5[id="search-title"]{
     text-align:left;
-    text-transform: lowercase;
+    text-transform: capitalize;
     padding-bottom: 5px;
-    padding-top: 5px;
+    padding-top: 20px;
+    margin-bottom: 0px;
 }
 
 p[id="search-subtitle"]{

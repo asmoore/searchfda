@@ -75,7 +75,7 @@ def results(search, category, view):
 
 #Recalls page
 @app.route('/recall/')
-def search():
+def recall():
     recalls = utils.fetch_recalls(search)
     keys = recalls[0].keys()
     values = recalls[0].values()

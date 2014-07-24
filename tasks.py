@@ -35,6 +35,7 @@ def index_search():
             response = urllib2.urlopen(dailymed_url)
             jdata = json.load(response)
             dailymed_url = jdata["metadata"]["next_page_url"]
+            print dailymed_url
             drugs = jdata["data"]
             for drug in drugs:
                  writer.add_document(name=unicode(drug["drug_name"]), category=unicode(drug["name_type"]))
@@ -42,8 +43,28 @@ def index_search():
             break
     writer.commit()
 
+def index_search2():
+    root = test = os.path.dirname(os.path.realpath('__file__'))
+    schema = Schema(name=TEXT(stored=True), category=ID(stored=True))
+    ix = create_in(root+"/data/", schema)
+    writer = ix.writer()
+    drug_name = "sumatriptan"
+    
+    #Get number of recalls for drug
+    recall_url = 'https://api.fda.gov/drug/enforcement.json?search=openfda.substance_name:"'+drug_name+'"&limit=1'
+    response = urllib2.urlopen(recall_url)
+    jdata = json.load(response)
+    recall_number = jdata["meta"]["results"]["total"]
+    print "recalls: " + str(recall_number) + "\n"
+
+    ae_url = 'https://api.fda.gov/drug/event.json?search=patient.drug.openfda.substance_name:"'+drug_name+'"&limit=1'
+    response = urllib2.urlopen(ae_url)
+    jdata = json.load(response)
+    ae_number = jdata["meta"]["results"]["total"]
+    print "Adverse events: " + str(ae_number) + "\n"
 
 if __name__ == '__main__':
-    append_index()
+    index_search()
+    #append_index()
 
     
