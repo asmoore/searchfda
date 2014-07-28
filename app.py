@@ -37,6 +37,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///search.db'
 db = SQLAlchemy(app)
 
 
+#Home page
+@app.route("/", methods=['GET'])
+def home():
+    autocomplete = [{"result":"CSS"},{"result":"JavaScript"},{"result":"Java"},{"result":"Ruby"},{"result":"PHP"}]
+    search_results = utils.fetch_search("sumatriptan",1)
+    return render_template("home.html", autocomplete=autocomplete, searchresults=search_results)
+
+
 #Autocomplete
 @app.route('/autocomplete', methods=['POST'])
 def autocomplete():
@@ -44,13 +52,6 @@ def autocomplete():
     search_results = utils.fetch_search(data)
     return search_results[0]["name"]
     #return search_results
-
-#Home page
-@app.route("/", methods=['GET'])
-def home():
-    autocomplete = [{"result":"CSS"},{"result":"JavaScript"},{"result":"Java"},{"result":"Ruby"},{"result":"PHP"}]
-    search_results = utils.fetch_search("sumatriptan",1)
-    return render_template("home.html", autocomplete=autocomplete, searchresults=search_results)
 
 
 #Search page
@@ -65,8 +66,8 @@ def search(search,page):
 
 
 #Result page
-@app.route('/search=<search>/<category>/<view>', strict_slashes=False)
-def results(search, category, view):
+@app.route('/search=<search>/result/', strict_slashes=False)
+def results(search):
     description = utils.fetch_description(search)
     adverse_events = utils.fetch_adverse_events(search,category,view)
     recalls = utils.fetch_recalls(search)
@@ -74,12 +75,30 @@ def results(search, category, view):
 
 
 #Recalls page
-@app.route('/recall/')
+@app.route('/search=<search>/result/recall/')
 def recall():
     recalls = utils.fetch_recalls(search)
     keys = recalls[0].keys()
     values = recalls[0].values()
     return render_template('recall.html', recalls=recalls[0])
+
+
+#Adverse events page
+@app.route('/search=<search>/result/adverse/')
+def adverse():
+    adverse_events = utils.fetch_adverse_events(search)
+    keys = adverse_events[0].keys()
+    values = adverse_events[0].values()
+    return render_template('adverse.html', adverse_events=adverse_events[0])
+
+
+#Labels page
+@app.route('/search=<search>/result/label/')
+def label():
+    labels = utils.fetch_labels(search)
+    keys = labels[0].keys()
+    values = labels[0].values()
+    return render_template('label.html', labels=labels[0])
 
 
 class Pagination(object):

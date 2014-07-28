@@ -54,7 +54,7 @@ def fetch_search(search,page):
     
 def fetch_adverse_events(search,category,view):
     """
-    Fetch search results.
+    Fetch adverse events from OpenFDA.
 
     """
     limit="20";
@@ -77,10 +77,31 @@ def fetch_adverse_events(search,category,view):
 
 def fetch_recalls(search):
     """
-    Fetch recalls from MedlinePlus.
+    Fetch recalls from OpenFDA.
 
     """
     limit="1";
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
+    search = "openfda.substance_name:"
+    count = "openfda.manufacturer_name.exact"
+    openfda_url = ''.join(["https://api.fda.gov/drug/enforcement.json?",
+        "api_key=",api_key,
+        "&search=",search,
+        "&count=",count,
+        "&limit=",limit])
+    openfda_url = "https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=1"
+    response = urllib2.urlopen(openfda_url)
+    jdata = json.load(response)
+
+    return jdata["results"]
+
+
+def fetch_labels(search):
+    """
+    Fetch labels from OpenFDA.
+
+    """
+    labels="nothing";
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
     search = "openfda.substance_name:"
     count = "openfda.manufacturer_name.exact"
