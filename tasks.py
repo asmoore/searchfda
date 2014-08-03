@@ -18,6 +18,8 @@ from whoosh.index import open_dir
 import urllib2
 import json
 
+import utils
+
 def index_search():
     """
     Index OpdenFDA for searching.
@@ -63,8 +65,33 @@ def index_search2():
     ae_number = jdata["meta"]["results"]["total"]
     print "Adverse events: " + str(ae_number) + "\n"
 
+
+def index_OpenFDA(startNumber):
+    """
+    Append OpenFDA quantities to Whoosh index
+
+    """
+    root = test = os.path.dirname(os.path.realpath('__file__'))
+    ix = open_dir(root+"/data/")
+    reader = ix.reader()
+
+    #OpenFDA 240/minute limit
+    #OpenFDA 120,000/day limit
+    for i in range(startNumber,(startNumber+10)):
+        result = reader.stored_fields(i)
+        
+        print result["name"]
+        ae_number = utils.get_ae_number(result["name"])
+        print ae_number
+
+        recall_number = utils.get_recall_number(result["name"])
+        print recall_number
+    
+    print i
+
+
 if __name__ == '__main__':
-    index_search()
+    index_OpenFDA(41350)
     #append_index()
 
     

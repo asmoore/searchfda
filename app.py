@@ -76,7 +76,7 @@ def results(search):
 
 #Recalls page
 @app.route('/search=<search>/result/recall/')
-def recall():
+def recall(search):
     recalls = utils.fetch_recalls(search)
     keys = recalls[0].keys()
     values = recalls[0].values()
@@ -85,16 +85,16 @@ def recall():
 
 #Adverse events page
 @app.route('/search=<search>/result/adverse/')
-def adverse():
-    adverse_events = utils.fetch_adverse_events(search)
+def adverse(search):
+    adverse_events = utils.fetch_adverse_events(search,"G","indication")
     keys = adverse_events[0].keys()
     values = adverse_events[0].values()
-    return render_template('adverse.html', adverse_events=adverse_events[0])
+    return render_template('recall.html',recalls=adverse_events[0])
 
 
 #Labels page
 @app.route('/search=<search>/result/label/')
-def label():
+def label(search):
     labels = utils.fetch_labels(search)
     keys = labels[0].keys()
     values = labels[0].values()

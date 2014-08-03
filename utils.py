@@ -132,25 +132,50 @@ def fetch_description(search):
     return description    
 
     
-def fetch_drugevent_json(search,count):
+def get_ae_number(drug_name):
     """
-    Fetch json data from OpenFDA.
+    Get number of adverse events for drug 
 
     """
-    #openfda_url = "https://api.fda.gov/drug/event.json?search=receivedate:[20040101+TO+20150101]&count=receivedate"
-    
-    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH&"
-    search = "receivedate:[20040101+TO+20150101]"
-    count = "receivedate"
-    openfda_url = ("https://api.fda.gov/drug/event.json?",
+    limit="1";
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
+    drug_name = drug_name.replace(" ","%20")
+    search = 'patient.drug.medicinalproduct:"'+drug_name+'"'
+    openfda_url = ''.join(["https://api.fda.gov/drug/event.json?",
         "api_key=",api_key,
         "&search=",search,
-        "&count=",count)
-    response = urllib2.urlopen(openfda_url)
-    jdata = json.load(response)
+        "&limit=",limit])
 
-    return jdata
+    try:
+        response = urllib2.urlopen(openfda_url)
+        jdata = json.load(response)
+        count = jdata['meta']['results']['total']
+    except:
+        count = 0
+    #indication = jdata['results'][0]['term'] 
+    return count   
+
+def get_recall_number(drug_name):
+    """
+    Get number of recalls
     
+    """
+    limit="1";
+    api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
+    drug_name = drug_name.replace(" ","%20")
+    search = 'openfda.substance_name:"'+drug_name+'"'
+    openfda_url = ''.join(["https://api.fda.gov/drug/enforcement.json?",
+        "api_key=",api_key,
+        "&search=",search,
+        "&limit=",limit])
+    try:
+        response = urllib2.urlopen(openfda_url)
+        jdata = json.load(response)
+        count = jdata['meta']['results']['total']
+    except:
+        count = 0
+    return count
+
 
 if __name__ == '__main__':
     #engine = create_engine('sqlite:///games.db')
