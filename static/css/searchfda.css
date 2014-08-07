@@ -214,3 +214,32 @@ ul.pagination {
 ul.pagination li {
 	font-size: 16pt;
 }
+
+ul {
+    margin-left: 1em;
+    font-family:Arial;
+    font-size:8pt;
+}
+
+.json-key {
+    font-weight: bold;
+    color: darkblue;
+    font-family:Arial;
+    font-size:8pt;
+}
+
+ul.report{
+    list-style-type: none;
+}
+
+.json-value {
+    margin-left: 1em;
+    font-family:Arial;
+    font-size:8pt;
+}
+.json-key {
+    font-weight: bold;
+    color: darkblue;
+    font-family:Arial;
+    font-size:8pt;
+}

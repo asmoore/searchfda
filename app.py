@@ -68,10 +68,10 @@ def search(search,page):
 #Result page
 @app.route('/search=<search>/result/', strict_slashes=False)
 def results(search):
-    description = utils.fetch_description(search)
-    adverse_events = utils.fetch_adverse_events(search,category,view)
+    adverse_event_count = utils.fetch_adverse_event_count(search,"indication")
+    adverse_event = utils.fetch_adverse_event(search, "indication")
     recalls = utils.fetch_recalls(search)
-    return render_template('results.html', description=description, adverse_events=adverse_events, recalls=recalls)
+    return render_template('result.html', adverse_event_count=adverse_event_count, adverse_event=adverse_event, recalls=recalls, search=search)
 
 
 #Recalls page
