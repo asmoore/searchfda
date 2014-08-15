@@ -80,9 +80,10 @@ span.postfix{
 
 .row[id="results-row"] {
 	background-color:white;
-    margin-top: 20px;
+    margin-top: 0px;
     outline:1px solid green;
     padding-top: 10px; 
+    padding-bottom: 10px;
 }
 
 .row[id="footer-row"] {
@@ -242,4 +243,30 @@ ul.report{
     color: darkblue;
     font-family:Arial;
     font-size:8pt;
+}
+
+#adverse-link, #recall-link, #label-link {
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 16px;
+	background: url("../images/pages_sprite_small.png") no-repeat left center;
+	padding-left: 18px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+#recall-link {
+	background-position: 0 -32px; 
+}
+
+#adverse-link {
+	background-position: 0 -16px;
+}
+
+#label-link {
+	background-position: 0 0;
+}
+
+.tab-title.active a {
+	font-weight: bold;
 }
