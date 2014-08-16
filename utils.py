@@ -52,15 +52,13 @@ def fetch_search(search,page):
     return (search_results,total)
     
     
-def fetch_adverse_event_count(search,view):
+def fetch_adverse_event_count(search,count):
     """
     Fetch adverse event counts from OpenFDA.
 
     """
     limit="20";
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
-    search = 'patient.drug.medicinalproduct:"'+search+'"'
-    count = "patient.drug.drugindication.exact"
     openfda_url = ''.join(["https://api.fda.gov/drug/event.json?",
         "api_key=",api_key,
         "&search=",search,
@@ -72,14 +70,13 @@ def fetch_adverse_event_count(search,view):
     return jdata["results"]
 
 
-def fetch_adverse_event(search,view):
+def fetch_adverse_event(search,count):
     """
     Fetch adverse events from OpenFDA.
 
     """
-    limit="1";
+    limit="2";
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
-    search = 'patient.drug.medicinalproduct:"'+search+'"'
     openfda_url = ''.join(["https://api.fda.gov/drug/event.json?",
         "api_key=",api_key,
         "&search=",search,
@@ -95,7 +92,7 @@ def fetch_recalls(search):
     Fetch recalls from OpenFDA.
 
     """
-    limit="1";
+    limit="2";
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
     search = "openfda.substance_name:"
     count = "openfda.manufacturer_name.exact"

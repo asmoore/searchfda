@@ -1,8 +1,9 @@
-function makeAdverseEvent(adverseEvent,chartName) {
-    visitObj($('#json-viewer'), adverseEvent[0]);
+function makeAdverseEvent(adverseEvent,chartName,resultNumber) {
+    visitObj($('#json-viewer'), adverseEvent[resultNumber]);
 }
 
 function visitObj($container, jsonData) {
+
     var $ul = $('<ul class="report">');
     
     var $li = $('<li>')
@@ -72,25 +73,12 @@ function visitObj($container, jsonData) {
         $li.append('<span class="json-value">' + medicinalProduct + '</span>')
         $ul.append($li);
     
-        var $li = $('<li>')
-        drugManufacturer = jsonData['patient']['drug'][i]['openfda']['manufacturer_name'][0];
-        $li.append('<span class="json-key">Drug manufacturer: </span>');
-        $li.append('<span class="json-value">' + drugManufacturer + '</span>')
-        $ul.append($li);
-    
-        var $li = $('<li>')
-        route = jsonData['patient']['drug'][i]['openfda']['route'];
-        $li.append('<span class="json-key">Route: </span>');
-        $li.append('<span class="json-value">' + route + '</span>')
-        $ul.append($li);
                 
         var $li = $('<li>')
         $li.append('<span class="break"> </span>')
         $ul.append($li);
-                
+                    
     }
-
-   
     $container.append($ul);
 }
 

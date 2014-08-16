@@ -40,9 +40,7 @@ db = SQLAlchemy(app)
 #Home page
 @app.route("/", methods=['GET'])
 def home():
-    autocomplete = [{"result":"CSS"},{"result":"JavaScript"},{"result":"Java"},{"result":"Ruby"},{"result":"PHP"}]
-    search_results = utils.fetch_search("sumatriptan",1)
-    return render_template("home.html", autocomplete=autocomplete, searchresults=search_results)
+    return render_template("home.html")
 
 
 #Autocomplete
@@ -66,12 +64,19 @@ def search(search,page):
 
 
 #Result page
-@app.route('/search=<search>/result/', strict_slashes=False)
+@app.route('/result/search=<search>/', strict_slashes=False)
 def results(search):
     adverse_event_count = utils.fetch_adverse_event_count(search,"indication")
     adverse_event = utils.fetch_adverse_event(search, "indication")
     recalls = utils.fetch_recalls(search)
     return render_template('result.html', adverse_event_count=adverse_event_count, adverse_event=adverse_event, recalls=recalls, search=search)
+
+#Result page
+@app.route('/result/count=<count>/search=<search>/', strict_slashes=False)
+def results(count,search):
+    adverse_event_count = utils.fetch_adverse_event_count(search,count)
+    adverse_event = utils.fetch_adverse_event(search, count)
+    return render_template('result.html', adverse_event_count=adverse_event_count, adverse_event=adverse_event, count=count, search=search)
 
 
 #Recalls page
