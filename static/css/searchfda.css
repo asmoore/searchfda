@@ -270,3 +270,8 @@ ul.report{
 .tab-title.active a {
 	font-weight: bold;
 }
+
+ul.pagination[id="report-pagination"] li {
+	margin-bottom: 5px;
+	font-size: 12pt;
+}

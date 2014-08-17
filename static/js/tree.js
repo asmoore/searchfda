@@ -1,5 +1,5 @@
-function makeAdverseEvent(adverseEvent,chartName,resultNumber) {
-    visitObj($('#json-viewer'), adverseEvent[resultNumber]);
+function makeAdverseEvent(adverseEvent,chartName) {
+    visitObj($('#json-viewer'), adverseEvent[0]);
 }
 
 function visitObj($container, jsonData) {

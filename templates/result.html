@@ -54,14 +54,19 @@
           <div class="panel">
 
             <div class="pagination-centered">
-              <ul class="pagination">
-                <li class="arrow unavailable"><a href="">&laquo;</a></li>
-                <li class="current"><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li class="arrow"><a href="">&raquo;</a></li>
-              </ul>
+              <ul class="pagination" id="report-pagination">
+              {%- for page in pagination.iter_pages() %}
+                {% if page %}
+                  {% if page != currentpage %}
+                    <li><a href="/result/count={{ count }}/search={{ search }}/report={{ page }}">{{ page }}</a></li>
+                  {% else %}
+                    <li class="current"><a href="/result/count={{ count }}/search={{ search }}/report={{ page }}">{{ page }}</a></li>
+                  {% endif %}
+                {% else %}
+                  <li class="unavailable"><a href="">&hellip;</a></li>
+                {% endif %}
+              {%- endfor %}
+            </ul>
             </div>
 
             <div id="json-viewer"></div>
@@ -165,8 +170,7 @@
   </div>
 </div>
 </footer>
- 
- {{count|tojson|safe}}
+
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
@@ -181,7 +185,7 @@
 
 <script>
   data = {{ adverse_event|tojson|safe }};
-  makeAdverseEvent(data,".json-viewer",1);
+  makeAdverseEvent(data,".json-viewer");
 </script>
 
 <script> 

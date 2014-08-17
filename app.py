@@ -59,7 +59,6 @@ def autocomplete():
 def search(search,page):
     (search_results, total) = utils.fetch_search(search,page)
     pagination = Pagination(page, 10, total)
-    print pagination
     return render_template('search.html',searchterm=search, searchresults=search_results, pagination=pagination, currentpage=page)
 
 
@@ -77,6 +76,21 @@ def results(count,search):
     adverse_event_count = utils.fetch_adverse_event_count(search,count)
     adverse_event = utils.fetch_adverse_event(search, count)
     return render_template('result.html', adverse_event_count=adverse_event_count, adverse_event=adverse_event, count=count, search=search)
+
+#Result page
+@app.route('/result/count=<count>/search=<search>/report=<int:report>', strict_slashes=False)
+def results(count,search,report):
+    adverse_event_count = utils.fetch_adverse_event_count(search,count)
+    (adverse_event, total_reports) = utils.fetch_adverse_event(search, report)
+    pagination = Pagination(report, 1, total_reports)
+    return render_template('result.html', 
+        adverse_event_count=adverse_event_count, 
+        adverse_event=adverse_event, 
+        count=count, 
+        search=search, 
+        total_reports=total_reports,
+        pagination=pagination,
+        currentpage=report)
 
 
 #Recalls page

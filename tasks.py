@@ -27,7 +27,7 @@ def index_search():
 
     """
     root = test = os.path.dirname(os.path.realpath('__file__'))
-    schema = Schema(name=TEXT(stored=True), category=ID(stored=True),ae_number=TEXT(stored=True),recall_number=TEXT(stored=True))
+    schema = Schema(name=TEXT(stored=True), category=ID(stored=True))
     ix = create_in(root+"/data/", schema)
     writer = ix.writer()
     
@@ -42,17 +42,12 @@ def index_search():
                 print dailymed_url
                 drugs = jdata["data"]
                 for drug in drugs:
-                    recall_number = utils.get_recall_number(str(drug["drug_name"]))
-                    ae_number = utils.get_ae_number(str(drug["drug_name"]))
                     writer.add_document(name=unicode(drug["drug_name"]), 
-                                        category=unicode(drug["name_type"]), 
-                                        ae_number=unicode(ae_number), 
-                                        recall_number=unicode(recall_number))
+                                        category=unicode(drug["name_type"]))
             except:
                 print "couldn't load " + dailymed_url
         else:
             break
-        time.sleep(60)
     writer.commit()
 
 def index_search2():

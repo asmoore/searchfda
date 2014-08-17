@@ -69,9 +69,9 @@
       {% for result in searchresults %}
       <h5 id="search-title"><a href="/search={{ result.name }}/result">{{ result.name }}</a></h5>
       <p id="search-subtitle">{{ result.category }}</p>
-      <a href="/search={{ result.name }}/result/recall" id="recall-link">2 recalls </a>
-      <a href="/search={{ result.name }}/result/adverse" id="adverse-link">10791 adverse events</a>
-      <a href="/search={{ result.name }}/result/label" id="label-link">0 labels</a>
+      <a href="/search={{ result.name }}/result/recall" id="recall-link">Recalls </a>
+      <a href='/result/count=patient.drug.drugindication.exact/search=patient.drug.medicinalproduct="{{ result.name }}"' id="adverse-link">Adverse events</a>
+      <a href="/search={{ result.name }}/result/label" id="label-link">Labels</a>
       {% endfor %}
     </li>
     
