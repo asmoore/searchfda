@@ -63,21 +63,6 @@ def search(search,page):
 
 
 #Result page
-@app.route('/result/search=<search>/', strict_slashes=False)
-def results(search):
-    adverse_event_count = utils.fetch_adverse_event_count(search,"indication")
-    adverse_event = utils.fetch_adverse_event(search, "indication")
-    recalls = utils.fetch_recalls(search)
-    return render_template('result.html', adverse_event_count=adverse_event_count, adverse_event=adverse_event, recalls=recalls, search=search)
-
-#Result page
-@app.route('/result/count=<count>/search=<search>/', strict_slashes=False)
-def results(count,search):
-    adverse_event_count = utils.fetch_adverse_event_count(search,count)
-    adverse_event = utils.fetch_adverse_event(search, count)
-    return render_template('result.html', adverse_event_count=adverse_event_count, adverse_event=adverse_event, count=count, search=search)
-
-#Result page
 @app.route('/result/count=<count>/search=<search>/report=<int:report>', strict_slashes=False)
 def results(count,search,report):
     adverse_event_count = utils.fetch_adverse_event_count(search,count)
@@ -91,34 +76,7 @@ def results(count,search,report):
         total_reports=total_reports,
         pagination=pagination,
         currentpage=report)
-
-
-#Recalls page
-@app.route('/search=<search>/result/recall/')
-def recall(search):
-    recalls = utils.fetch_recalls(search)
-    keys = recalls[0].keys()
-    values = recalls[0].values()
-    return render_template('recall.html', recalls=recalls[0])
-
-
-#Adverse events page
-@app.route('/search=<search>/result/adverse/')
-def adverse(search):
-    adverse_events = utils.fetch_adverse_events(search,"G","indication")
-    keys = adverse_events[0].keys()
-    values = adverse_events[0].values()
-    return render_template('recall.html',recalls=adverse_events[0])
-
-
-#Labels page
-@app.route('/search=<search>/result/label/')
-def label(search):
-    labels = utils.fetch_labels(search)
-    keys = labels[0].keys()
-    values = labels[0].values()
-    return render_template('label.html', labels=labels[0])
-
+    
 
 class Pagination(object):
 

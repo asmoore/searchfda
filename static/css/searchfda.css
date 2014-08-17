@@ -275,3 +275,8 @@ ul.pagination[id="report-pagination"] li {
 	margin-bottom: 5px;
 	font-size: 12pt;
 }
+
+.search-container>.columns {
+	padding-left:0;
+	padding-right:0;
+}

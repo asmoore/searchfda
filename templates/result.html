@@ -32,17 +32,17 @@
             <dl class="sub-nav">
               <dt>View:</dt>
               {% if count == "patient.drug.drugindication.exact" %}
-              <dd class="active"><a href="/result/count=patient.drug.drugindication.exact/search={{search}}">Indication</a></dd>
-              <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}">Reaction</a></dd>
-              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}">Manufacturer</a></dd>
+              <dd class="active"><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
+              <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
+              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
               {% elif count == "patient.reaction.reactionmeddrapt.exact" %}
-              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}">Indication</a></dd>
-              <dd class="active"><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}">Reaction</a></dd>
-              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}">Manufacturer</a></dd>
+              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
+              <dd class="active"><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
+              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
               {% else %}
-              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}">Indication</a></dd>
-              <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}">Reaction</a></dd>
-              <dd class="active"><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}">Manufacturer</a></dd>
+              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
+              <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
+              <dd class="active"><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
               {% endif %}
               
             </dl>
