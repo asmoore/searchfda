@@ -95,21 +95,22 @@ def fetch_adverse_event(search,report):
     return (results, total_reports)
 
 
-def fetch_recalls(search):
+def fetch_recall_count(search, count):
     """
     Fetch recalls from OpenFDA.
 
     """
-    limit="2"
+    limit="20"
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
-    search = "openfda.substance_name:"
-    count = "openfda.manufacturer_name.exact"
     openfda_url = ''.join(["https://api.fda.gov/drug/enforcement.json?",
         "api_key=",api_key,
         "&search=",search,
         "&count=",count,
         "&limit=",limit])
-    openfda_url = "https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=1"
+    
+    openfda_url = openfda_url.replace(" ","%20")
+    openfda_url = openfda_url.replace('"',"%22")
+    print openfda_url
     response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
 
