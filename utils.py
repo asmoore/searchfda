@@ -41,13 +41,18 @@ def fetch_search(search,page):
         total = results.total
         print total
         for hit in results:
+            print hit
             if hit["category"] == "B":
                 category = "Brand name drug"
             elif hit["category"] == "G":
                 category = "Generic drug"
             else:
                 category = hit["category"]
-            search_results.append({"name": hit["name"].capitalize(),"category": category, "view":"indication"})
+            search_results.append({"name": hit["name"].capitalize(),
+                                   "category": category,
+                                   "adverse": hit["adverse"],
+                                   "recall": hit["recall"],
+                                   "label": hit["label"]})
     #total = 2
     return (search_results,total)
     
