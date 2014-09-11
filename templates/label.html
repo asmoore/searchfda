@@ -24,42 +24,113 @@
       <div class="large-12 columns">
 
       <ul>
-        <li class="tab-title active"><a href='/recall/{{ searchterm }}/count=openfda.manufacturer_name.exact/search=openfda.substance_name:"{{ searchterm }}"/report=1' id="adverse-link">Recalls</a></li>
-        <li class="tab-title"><a href='/adverse/{{ searchterm }}/count=patient.drug.drugindication.exact/search=patient.drug.medicinalproduct:"{{ searchterm }}"/report=1' id="recall-link">Adverse Events</a></li>
-        <li class="tab-title"><a href="#panel2-3" id="label-link">Labels (not available yet)</a></li>
+        <li class="tab-title"><a href='/recall/{{ searchterm }}/count=openfda.manufacturer_name.exact/search=openfda.substance_name:"{{ searchterm }}"/report=1' id="adverse-link">Recalls</a></li>
+        <li class="tab-title active"><a href='/adverse/{{ searchterm }}/count=patient.drug.drugindication.exact/search=patient.drug.medicinalproduct:"{{ searchterm }}"/report=1' id="recall-link">Adverse Events</a></li>
+        <li class="tab-title"><a href="#panel2-3" id="label-link">Labels</a></li>
       </ul>
 
       <div id="panel2-1">
         <h4>Adverse Events</h4>
         <div class="large-6 columns">
           <div class="panel">
-            <dl class="sub-nav">
-              <dt>View:</dt>
-              {% if count == "patient.drug.drugindication.exact" %}
-              <dd class="active"><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
-              <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
-              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
-              {% elif count == "patient.reaction.reactionmeddrapt.exact" %}
-              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
-              <dd class="active"><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
-              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
-              {% else %}
-              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
-              <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
-              <dd class="active"><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
-              {% endif %}
-              
-            </dl>
-            <svg class="adverse_events_chart"></svg>
           </div>
         </div>
 
         <div class="large-6 columns">
           <div class="panel">
 
+              {% if label[0].openfda.application_number %}<h2>Application Number</h2>{{ label[0].openfda.application_number[0] }}{% endif %}
+              {% if label[0].openfda.brand_name %}<h2>Brand Name</h2>{{ label[0].openfda.brand_name[0] }}{% endif %}
+              {% if label[0].openfda.dosage_form %}<h2>Dosage Form</h2>{{ label[0].openfda.dosage_form[0] }}{% endif %}
+              {% if label[0].openfda.generic_name %}<h2>Generic Name</h2>{{ label[0].openfda.generic_name[0] }}{% endif %}
+              {% if label[0].openfda.manufacturer_name %}<h2>Manufacturer Name</h2>{{ label[0].openfda.manufacturer_name[0] }}{% endif %}
+              {% if label[0].openfda.is_original_packager %}<h2>Orginal Packager</h2>{{ label[0].openfda.is_original_packager[0] }}{% endif %}
+              {% if label[0].openfda.product_ndc %}<h2>Product NDC</h2>{{ label[0].openfda.product_ndc[0] }}{% endif %}
+              {% if label[0].openfda.product_type %}<h2>Product Type</h2>{{ label[0].openfda.product_type[0] }}{% endif %}
+              {% if label[0].openfda.route %}<h2>Route</h2>{{ label[0].openfda.route[0] }}{% endif %}
+              {% if label[0].openfda.substance_name %}<h2>Substance Name</h2>{{ label[0].openfda.substance_name[0] }}{% endif %}
+              {% if label[0].openfda.spl_id %}<h2>SPL ID</h2>{{ label[0].openfda.spl_id[0] }}{% endif %}
+              {% if label[0].openfda.spl_set_id %}<h2>SPL Set ID</h2>{{ label[0].openfda.spl_set_id[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_moa %}<h2>Pharm Class MOA</h2>{{ label[0].openfda.pharm_class_moa[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_cs %}<h2>Pharm Class CS</h2>{{ label[0].openfda.pharm_class_cs[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_pe %}<h2>Pharm Class PE</h2>{{ label[0].openfda.pharm_class_pe[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_epc %}<h2>Pharm Class EPC</h2>{{ label[0].openfda.pharm_class_epc[0] }}{% endif %}
+              {% if label[0].openfda.upc %}<h2>UPC</h2>{{ label[0].openfda.upc[0] }}{% endif %}
+              {% if label[0].drug_abuse_and_dependence %}<h2>Drug Abuse and Dependence</h2>{{ label[0].drug_abuse_and_dependence[0] }}{% endif %}
+              {% if label[0].controlled_substance %}<h2>Controlled Substance</h2>{{ label[0].controlled_substance[0] }}{% endif %}
+              {% if label[0].abuse %}<h2>Abuse</h2>{{ label[0].abuse[0] }}{% endif %}
+              {% if label[0].dependence %}<h2>Dependence</h2>{{ label[0].dependence[0] }}{% endif %}
+              {% if label[0].overdose %}<h2>Overdose</h2>{{ label[0].overdose[0] }}{% endif %}
 
-            <div id="json-viewer"></div>
+              {% if label[0].adverse_reactions %}<h2>Adverse Reactions</h2>{{ label[0].adverse_reactions[0] }}{% endif %}
+              {% if label[0].drug_interactions %}<h2>Drug Interactions</h2>{{ label[0].drug_interactions[0] }}{% endif %}
+              {% if label[0].drug_and_or_laboratory_test_interactions %}<h2>Drug and/or Test Interactions</h2>{{ label[0].drug_and_or_laboratory_test_interactions[0] }}{% endif %}
 
+              {% if label[0].clinical_pharmacology %}<h2>Clinical Pharmacology</h2>{{ label[0].clinical_pharmacology[0] }}{% endif %}
+              {% if label[0].mechanism_of_action %}<h2>Mechanism of Action</h2>{{ label[0].mechanism_of_action[0] }}{% endif %}
+              {% if label[0].pharmacodynamics %}<h2>Pharmacodynamics</h2>{{ label[0].pharmacodynamics[0] }}{% endif %}
+              {% if label[0].pharmacokinetics %}<h2>Pharmacokinetics</h2>{{ label[0].pharmacokinetics[0] }}{% endif %}
+
+              {% if label[0].indications_and_usage %}<h2>Indications and Usage</h2>{{ label[0].indications_and_usage[0] }}{% endif %}
+              {% if label[0].contraindications %}<h2>Contraindications</h2>{{ label[0].contraindications[0] }}{% endif %}
+              {% if label[0].dosage_and_administration %}<h2>Dosage and Administration</h2>{{ label[0].dosage_and_administration[0] }}{% endif %}
+              {% if label[0].dosage_forms_and_strengths %}<h2>Dosage Forms and Strengths</h2>{{ label[0].dosage_forms_and_strengths[0] }}{% endif %}
+              {% if label[0].purpose %}<h2>Purpose</h2>{{ label[0].purpose[0] }}{% endif %}
+              {% if label[0].description %}<h2>Description</h2>{{ label[0].description[0] }}{% endif %}
+              {% if label[0].active_ingredient %}<h2>Active Ingredient</h2>{{ label[0].active_ingredient[0] }}{% endif %}
+              {% if label[0].inactive_ingredient %}<h2>Inactive Ingredient</h2>{{ label[0].inactive_ingredient[0] }}{% endif %}
+              {% if label[0].spl_product_data_elements %}<h2>SPL Product Data Elements</h2>{{ label[0].spl_product_data_elements[0] }}{% endif %}
+
+              {% if label[0].spl_patient_package_insert %}<h2>SPL Patient Package Insert</h2>{{ label[0].spl_patient_package_insert[0] }}{% endif %}
+              {% if label[0].information_for_patients %}<h2>Information for Patients</h2>{{ label[0].information_for_patients[0] }}{% endif %}
+              {% if label[0].information_for_owners_or_caregivers %}<h2>Informations for Owners or Caregivers</h2>{{ label[0].information_for_owners_or_caregivers[0] }}{% endif %}
+              {% if label[0].instructions_for_use %}<h2>Instructions for Use</h2>{{ label[0].instructions_for_use[0] }}{% endif %}
+              {% if label[0].ask_doctor %}<h2>Ask Doctor</h2>{{ label[0].ask_doctor[0] }}{% endif %}
+              {% if label[0].ask_doctor_or_pharmacist %}<h2>Ask Doctor or Pharmacist</h2>{{ label[0].ask_doctor_or_pharmacist[0] }}{% endif %}
+              {% if label[0].do_not_use %}<h2>Do not Use</h2>{{ label[0].do_not_use[0] }}{% endif %}
+              {% if label[0].keep_out_of_reach_of_children %}<h2>Keep Out of Reach of Children</h2>{{ label[0].keep_out_of_reach_of_children[0] }}{% endif %}
+              {% if label[0].other_safety_information %}<h2>Other Safety Information</h2>{{ label[0].other_safety_information[0] }}{% endif %}
+              {% if label[0].questions %}<h2>Questions</h2>{{ label[0].questions[0] }}{% endif %}
+              {% if label[0].stop_use %}<h2>Stop Use</h2>{{ label[0].stop_use[0] }}{% endif %}
+              {% if label[0].when_using %}<h2>When Using</h2>{{ label[0].when_using[0] }}{% endif %}
+              {% if label[0].patient_medication_information %}<h2>Patient Medication Information</h2>{{ label[0].patient_medication_information[0] }}{% endif %}
+              {% if label[0].spl_medguide %}<h2>SPL Medguide</h2>{{ label[0].spl_medguide[0] }}{% endif %}
+
+              {% if label[0].use_in_specific_populations %}<h2>Use in Specific Populations</h2>{{ label[0].use_in_specific_populations[0] }}{% endif %}
+              {% if label[0].pregnancy %}<h2>Pregnancy</h2>{{ label[0].pregnancy[0] }}{% endif %}
+              {% if label[0].teratogenic_effects %}<h2>Teratogenic Effects</h2>{{ label[0].teratogenic_effects[0] }}{% endif %}
+              {% if label[0].nonteratogenic_effects %}<h2>Nonteratogenic Effects</h2>{{ label[0].nonteratogenic_effects[0] }}{% endif %}
+              {% if label[0].labor_and_delivery %}<h2>Labor and Delivery</h2>{{ label[0].labor_and_delivery[0] }}{% endif %}
+              {% if label[0].nursing_mothers %}<h2>Nursing Mothers</h2>{{ label[0].nursing_mothers[0] }}{% endif %}
+              {% if label[0].pediatric_use %}<h2>Pediatric Use</h2>{{ label[0].pediatric_use[0] }}{% endif %}
+              {% if label[0].geriatric_use %}<h2>Geriatric Use</h2>{{ label[0].geriatric_use[0] }}{% endif %}
+              {% if label[0].nonclinical_toxicology %}<h2>Nonclinical Toxicology</h2>{{ label[0].nonclinical_toxicology[0] }}{% endif %}
+              {% if label[0].carcinogenesis_and_mutagenesis_and_impairment_of_fertility %}<h2>Carcinogenesis and Mutagenesis and Impairment of Fertility</h2>{{ label[0].carcinogenesis_and_mutagenesis_and_impairment_of_fertility[0] }}{% endif %}
+              {% if label[0].animal_pharmacology_and_or_toxicology %}<h2>Animal Pharmacology and or toxicology</h2>{{ label[0].animal_pharmacology_and_or_toxicology[0] }}{% endif %}
+
+              {% if label[0].clinical_studies %}<h2>Clinical Studies</h2>{{ label[0].clinical_studies[0] }}{% endif %}
+              {% if label[0].references %}<h2>References</h2>{{ label[0].references[0] }}{% endif %}
+
+              {% if label[0].how_supplied %}<h2>How Supplied</h2>{{ label[0].how_supplied[0] }}{% endif %}
+              {% if label[0].storage_and_handling %}<h2>Storage and Handling</h2>{{ label[0].storage_and_handling[0] }}{% endif %}
+              {% if label[0].safe_handling_warning %}<h2>Safe Handling Warning</h2>{{ label[0].safe_handling_warning[0] }}{% endif %}
+
+              {% if label[0].boxed_warnings %}<h2>Boxed Warning</h2>{{ label[0].boxed_warnings[0] }}{% endif %}
+              {% if label[0].warnings_and_precautions %}<h2>Warnings and Precautions</h2>{{ label[0].warnings_and_precautions[0] }}{% endif %}
+              {% if label[0].user_safety_warnings %}<h2>User Safety Warnings</h2>{{ label[0].user_safety_warnings[0] }}{% endif %}
+              {% if label[0].precautions %}<h2>Precautions</h2>{{ label[0].precautions[0] }}{% endif %}
+              {% if label[0].warnings %}<h2>Warnings</h2>{{ label[0].warnings[0] }}{% endif %}
+              {% if label[0].general_precautions %}<h2>General Precautions</h2>{{ label[0].general_precautions[0] }}{% endif %}
+
+              {% if label[0].laboratory_tests %}<h2>Laboratory Tests</h2>{{ label[0].laboratory_tests[0] }}{% endif %}
+              {% if label[0].recent_major_changes %}<h2>Recent Major Changes</h2>{{ label[0].recent_major_changes[0] }}{% endif %}
+              {% if label[0].microbiology %}<h2>Microbiology</h2>{{ label[0].microbiology[0] }}{% endif %}
+              {% if label[0].package_label_principal_display_panel %}<h2>Package Label Principal Display Panel</h2>{{ label[0].package_label_principal_display_panel[0] }}{% endif %}
+              {% if label[0].spl_unclassified_section %}<h2>SPL Unclassified Section</h2>{{ label[0].spl_unclassified_section[0] }}{% endif %}
+
+              {% for media in media_url%}
+              <img src="{{ media.url }}" alt="label">
+              {% endfor %}
           </div>
         </div>
 
@@ -88,17 +159,9 @@
 </div>
 </footer>
 
-
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="{{ url_for('static', filename='js/barchart.js') }}"></script>
-<script src="{{ url_for('static', filename='js/tree.js') }}"></script>
-
-<script>
-  data = {{ recall_count|tojson|safe }};
-  makeBarChart(data,".adverse_events_chart",{{count|tojson|safe}});
-</script>
 
 <script> 
   function search() {

@@ -78,7 +78,7 @@ def results(count,search,report):
         currentpage=report)
     
 
-#Result page
+#Adverse page
 @app.route('/adverse/<searchterm>/count=<count>/search=<search>/report=<int:report>', strict_slashes=False)
 def adverse(searchterm,count,search,report):
     adverse_event_count = utils.fetch_adverse_event_count(search,count)
@@ -95,7 +95,7 @@ def adverse(searchterm,count,search,report):
         currentpage=report)
 
 
-#Result page
+#recall page
 @app.route('/recall/<searchterm>/count=<count>/search=<search>/report=<int:report>', strict_slashes=False)
 def recall(searchterm,count,search,report):
     recall_count = utils.fetch_recall_count(search,count)
@@ -105,6 +105,20 @@ def recall(searchterm,count,search,report):
         search=search, 
         currentpage=report,
         recall_count=recall_count)
+
+
+#Label page
+@app.route('/label/<searchterm>/count=<count>/search=<search>/report=<int:report>', strict_slashes=False)
+def label(searchterm,count,search,report):
+    (label, spl_set_id) = utils.fetch_label(search)
+    media_url = utils.fetch_label_media(spl_set_id)
+    return render_template('label.html', 
+        searchterm=searchterm, 
+        count=count, 
+        search=search, 
+        label=label,
+        spl_set_id=spl_set_id,
+        media_url=media_url)
 
 
 class Pagination(object):

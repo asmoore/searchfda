@@ -122,26 +122,36 @@ def fetch_recall_count(search, count):
     return jdata["results"]
 
 
-def fetch_labels(search):
+def fetch_label(search):
     """
-    Fetch labels from OpenFDA.
+    Fetch label from OpenFDA.
 
     """
-    labels="nothing";
     api_key = "QxCHqxHE1kHDwbBFj2WRh3w8y3aepivT42vgCQDH"
-    search = "openfda.substance_name:"
-    count = "openfda.manufacturer_name.exact"
-    openfda_url = ''.join(["https://api.fda.gov/drug/enforcement.json?",
+    limit = "1"
+    openfda_url = ''.join(["https://api.fda.gov/drug/label.json?",
         "api_key=",api_key,
         "&search=",search,
-        "&count=",count,
         "&limit=",limit])
-    openfda_url = "https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=1"
     response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
+    spl_set_id = jdata["results"][0]["openfda"]["spl_set_id"][0]
 
-    return jdata["results"]
+    return (jdata["results"], spl_set_id)
 
+
+def fetch_label_media(spl_id):
+    """
+    Fetch label media from Dailymed
+
+    """
+    dailymed_url = ''.join(["http://dailymed.nlm.nih.gov/dailymed/services/v2/spls/",
+        spl_id,
+        "/media.json"])
+    response = urllib2.urlopen(dailymed_url)
+    jdata = json.load(response)
+    media_url = jdata["data"]["media"]
+    return media_url
 
 def fetch_description(search):
     """
