@@ -280,3 +280,7 @@ ul.pagination[id="report-pagination"] li {
 	padding-left:0;
 	padding-right:0;
 }
+
+div[id="pie-chart"] {
+	width:1-0%;
+}

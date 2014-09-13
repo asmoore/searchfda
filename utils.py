@@ -136,7 +136,13 @@ def fetch_label(search):
     response = urllib2.urlopen(openfda_url)
     jdata = json.load(response)
     spl_set_id = jdata["results"][0]["openfda"]["spl_set_id"][0]
-
+    #for key, value in jdata["results"][0].iteritems():
+    #    print key
+    #    print value
+    #    if type(value) is list:
+    #        text = value[0].encode('ascii', 'ignore')
+    #        pattern = re.compile(key.replace("_"," "), re.IGNORECASE)
+    #        print pattern.sub("", text)
     return (jdata["results"], spl_set_id)
 
 

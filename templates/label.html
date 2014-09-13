@@ -31,31 +31,13 @@
 
       <div id="panel2-1">
         <h4>Adverse Events</h4>
-        <div class="large-6 columns">
+        <div class="large-4 columns">
           <div class="panel">
           </div>
         </div>
 
-        <div class="large-6 columns">
+        <div class="large-8 columns">
           <div class="panel">
-
-              {% if label[0].openfda.application_number %}<h2>Application Number</h2>{{ label[0].openfda.application_number[0] }}{% endif %}
-              {% if label[0].openfda.brand_name %}<h2>Brand Name</h2>{{ label[0].openfda.brand_name[0] }}{% endif %}
-              {% if label[0].openfda.dosage_form %}<h2>Dosage Form</h2>{{ label[0].openfda.dosage_form[0] }}{% endif %}
-              {% if label[0].openfda.generic_name %}<h2>Generic Name</h2>{{ label[0].openfda.generic_name[0] }}{% endif %}
-              {% if label[0].openfda.manufacturer_name %}<h2>Manufacturer Name</h2>{{ label[0].openfda.manufacturer_name[0] }}{% endif %}
-              {% if label[0].openfda.is_original_packager %}<h2>Orginal Packager</h2>{{ label[0].openfda.is_original_packager[0] }}{% endif %}
-              {% if label[0].openfda.product_ndc %}<h2>Product NDC</h2>{{ label[0].openfda.product_ndc[0] }}{% endif %}
-              {% if label[0].openfda.product_type %}<h2>Product Type</h2>{{ label[0].openfda.product_type[0] }}{% endif %}
-              {% if label[0].openfda.route %}<h2>Route</h2>{{ label[0].openfda.route[0] }}{% endif %}
-              {% if label[0].openfda.substance_name %}<h2>Substance Name</h2>{{ label[0].openfda.substance_name[0] }}{% endif %}
-              {% if label[0].openfda.spl_id %}<h2>SPL ID</h2>{{ label[0].openfda.spl_id[0] }}{% endif %}
-              {% if label[0].openfda.spl_set_id %}<h2>SPL Set ID</h2>{{ label[0].openfda.spl_set_id[0] }}{% endif %}
-              {% if label[0].openfda.pharm_class_moa %}<h2>Pharm Class MOA</h2>{{ label[0].openfda.pharm_class_moa[0] }}{% endif %}
-              {% if label[0].openfda.pharm_class_cs %}<h2>Pharm Class CS</h2>{{ label[0].openfda.pharm_class_cs[0] }}{% endif %}
-              {% if label[0].openfda.pharm_class_pe %}<h2>Pharm Class PE</h2>{{ label[0].openfda.pharm_class_pe[0] }}{% endif %}
-              {% if label[0].openfda.pharm_class_epc %}<h2>Pharm Class EPC</h2>{{ label[0].openfda.pharm_class_epc[0] }}{% endif %}
-              {% if label[0].openfda.upc %}<h2>UPC</h2>{{ label[0].openfda.upc[0] }}{% endif %}
               {% if label[0].drug_abuse_and_dependence %}<h2>Drug Abuse and Dependence</h2>{{ label[0].drug_abuse_and_dependence[0] }}{% endif %}
               {% if label[0].controlled_substance %}<h2>Controlled Substance</h2>{{ label[0].controlled_substance[0] }}{% endif %}
               {% if label[0].abuse %}<h2>Abuse</h2>{{ label[0].abuse[0] }}{% endif %}
@@ -128,8 +110,28 @@
               {% if label[0].package_label_principal_display_panel %}<h2>Package Label Principal Display Panel</h2>{{ label[0].package_label_principal_display_panel[0] }}{% endif %}
               {% if label[0].spl_unclassified_section %}<h2>SPL Unclassified Section</h2>{{ label[0].spl_unclassified_section[0] }}{% endif %}
 
+              {% if label[0].openfda.application_number %}<h2>Application Number</h2>{{ label[0].openfda.application_number[0] }}{% endif %}
+              {% if label[0].openfda.brand_name %}<h2>Brand Name</h2>{{ label[0].openfda.brand_name[0] }}{% endif %}
+              {% if label[0].openfda.dosage_form %}<h2>Dosage Form</h2>{{ label[0].openfda.dosage_form[0] }}{% endif %}
+              {% if label[0].openfda.generic_name %}<h2>Generic Name</h2>{{ label[0].openfda.generic_name[0] }}{% endif %}
+              {% if label[0].openfda.manufacturer_name %}<h2>Manufacturer Name</h2>{{ label[0].openfda.manufacturer_name[0] }}{% endif %}
+              {% if label[0].openfda.is_original_packager %}<h2>Orginal Packager</h2>{{ label[0].openfda.is_original_packager[0] }}{% endif %}
+              {% if label[0].openfda.product_ndc %}<h2>Product NDC</h2>{{ label[0].openfda.product_ndc[0] }}{% endif %}
+              {% if label[0].openfda.product_type %}<h2>Product Type</h2>{{ label[0].openfda.product_type[0] }}{% endif %}
+              {% if label[0].openfda.route %}<h2>Route</h2>{{ label[0].openfda.route[0] }}{% endif %}
+              {% if label[0].openfda.substance_name %}<h2>Substance Name</h2>{{ label[0].openfda.substance_name[0] }}{% endif %}
+              {% if label[0].openfda.spl_id %}<h2>SPL ID</h2>{{ label[0].openfda.spl_id[0] }}{% endif %}
+              {% if label[0].openfda.spl_set_id %}<h2>SPL Set ID</h2>{{ label[0].openfda.spl_set_id[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_moa %}<h2>Pharm Class MOA</h2>{{ label[0].openfda.pharm_class_moa[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_cs %}<h2>Pharm Class CS</h2>{{ label[0].openfda.pharm_class_cs[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_pe %}<h2>Pharm Class PE</h2>{{ label[0].openfda.pharm_class_pe[0] }}{% endif %}
+              {% if label[0].openfda.pharm_class_epc %}<h2>Pharm Class EPC</h2>{{ label[0].openfda.pharm_class_epc[0] }}{% endif %}
+              {% if label[0].openfda.upc %}<h2>UPC</h2>{{ label[0].openfda.upc[0] }}{% endif %}
+
               {% for media in media_url%}
               <img src="{{ media.url }}" alt="label">
+              {{media}}
+
               {% endfor %}
           </div>
         </div>
