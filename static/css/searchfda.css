@@ -282,5 +282,14 @@ ul.pagination[id="report-pagination"] li {
 }
 
 div[id="pie-chart"] {
-	width:1-0%;
+	width:100%;
+	text-align:center;
+}
+
+div[id="pie-chart"] text {
+  text-transform: lowercase;
+}
+
+ul[data-pie-id="pie-chart"] li {
+  text-transform: lowercase;
 }

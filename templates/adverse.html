@@ -26,7 +26,7 @@
 
       <ul>
         <li class="tab-title"><a href='/recall/{{ searchterm }}/count=openfda.manufacturer_name.exact/search=openfda.substance_name:"{{ searchterm }}"/report=1' id="adverse-link">Recalls</a></li>
-        <li class="tab-title active"><a href='/adverse/{{ searchterm }}/count=patient.drug.drugindication.exact/search=patient.drug.medicinalproduct:"{{ searchterm }}"/report=1' id="recall-link">Adverse Events</a></li>
+        <li class="tab-title active"><a href='/adverse/{{ searchterm }}/count=patient.drug[0].drugindication.exact/search=patient.drug[0].medicinalproduct:"{{ searchterm }}"/report=1' id="recall-link">Adverse Events</a></li>
         <li class="tab-title"><a href="#panel2-3" id="label-link">Labels (not available yet)</a></li>
       </ul>
 
@@ -36,18 +36,18 @@
           <div class="panel">
             <dl class="sub-nav">
               <dt>View:</dt>
-              {% if count == "patient.drug.drugindication.exact" %}
-              <dd class="active"><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
+              {% if count == "patient.drug[0].drugindication.exact" %}
+              <dd class="active"><a href="/result/count=patient.drug[0].drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
               <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
-              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
+              <dd><a href="/result/count=patient.drug[0].openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
               {% elif count == "patient.reaction.reactionmeddrapt.exact" %}
-              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
+              <dd><a href="/result/count=patient.drug[0].drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
               <dd class="active"><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
-              <dd><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
+              <dd><a href="/result/count=patient.drug[0].openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
               {% else %}
-              <dd><a href="/result/count=patient.drug.drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
+              <dd><a href="/result/count=patient.drug[0].drugindication.exact/search={{search}}/report={{currentpage}}">Indication</a></dd>
               <dd><a href="/result/count=patient.reaction.reactionmeddrapt.exact/search={{search}}/report={{currentpage}}">Reaction</a></dd>
-              <dd class="active"><a href="/result/count=patient.drug.openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
+              <dd class="active"><a href="/result/count=patient.drug[0].openfda.manufacturer_name.exact/search={{search}}/report={{currentpage}}">Manufacturer</a></dd>
               {% endif %}
               
             </dl>
@@ -81,7 +81,36 @@
             </ul>
             </div>
 
-            <div id="json-viewer"></div>
+            {% if adverse_event[0].safetyreport %}<h2>Safety Report</h2>{{ adverse_event[0].safetyreport}}{% endif %}
+            {% if adverse_event[0].safetyreportversion %}<h2>Safety Report Version</h2>{{ adverse_event[0].safetyreportversion}}{% endif %}
+            {% if adverse_event[0].receivedate %}<h2>Receive Date</h2>{{ adverse_event[0].receivedate}}{% endif %}
+            {% if adverse_event[0].serious %}<h2>Serious</h2>{{ adverse_event[0].serious}}{% endif %}
+            {% if adverse_event[0].occurcountry %}<h2>Country</h2>{{ adverse_event[0].occurcountry}}{% endif %}
+            {% if adverse_event[0].patient.patientsex %}<h2>Patient Sex</h2>{{ adverse_event[0].patient.patientsex}}{% endif %}
+            {% if adverse_event[0].patient.patientweight %}<h2>Patient Weight</h2>{{ adverse_event[0].patient.patientweight}} kg{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugdosageform %}<h2>Drug Dosage Form</h2>{{ adverse_event[0].patient.drug[0].drugdosageform}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugbatchnum %}<h2>Drug Batch Number</h2>{{ adverse_event[0].patient.drug[0].drugbatchnum}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugdosagetext %}<h2>Drug Dosage</h2>{{ adverse_event[0].patient.drug[0].drugdosagetext}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugenddate %}<h2>Drug End Date</h2>{{ adverse_event[0].patient.drug[0].drugenddate}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugindication %}<h2>Drug Indication</h2>{{ adverse_event[0].patient.drug[0].drugindication}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugstartdate %}<h2>Drug Start Date</h2>{{ adverse_event[0].patient.drug[0].drugstartdate}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].medicinalproduct %}<h2>Medicinal Product</h2>{{ adverse_event[0].patient.drug[0].medicinalproduct}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].openfda %}
+              {% if adverse_event[0].patient.drug[0].openfda.spl_id[0] %}<h2>SPL ID</h2>{{ adverse_event[0].patient.drug[0].openfda.spl_id[0]}}{% endif 
+              %}
+              {% if adverse_event[0].patient.drug[0].openfda.product_ndc[0] %}<h2>Product NDC</h2>{{ adverse_event[0].patient.drug[0].openfda.product_ndc[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.route[0] %}<h2>Route</h2>{{ adverse_event[0].patient.drug[0].openfda.route[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.substance_name[0] %}<h2>Substance Name</h2>{{ adverse_event[0].patient.drug[0].openfda.substance_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.rxcui[0] %}<h2>RXCUI</h2>{{ adverse_event[0].patient.drug[0].openfda.rxcui[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.spl_set_id[0] %}<h2>SPL Set ID</h2>{{ adverse_event[0].patient.drug[0].openfda.spl_set_id[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.package_ndc[0] %}<h2>Package NDC</h2>{{ adverse_event[0].patient.drug[0].openfda.package_ndc[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.product_type[0] %}<h2>Product Type</h2>{{ adverse_event[0].patient.drug[0].openfda.product_type[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.generic_name[0] %}<h2>Generic Name</h2>{{ adverse_event[0].patient.drug[0].openfda.generic_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.manufacturer_name[0] %}<h2>Manufacturer</h2>{{ adverse_event[0].patient.drug[0].openfda.manufacturer_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.brand_name[0] %}<h2>Brand Name</h2>{{ adverse_event[0].patient.drug[0].openfda.brand_name[0]}}{% endif %}
+            {% endif %}
+            {% if adverse_event[0].patient.reaction[0].reactionmeddrapt %}<h2>Reaction</h2>{{ adverse_event[0].patient.reaction[0].reactionmeddrapt}}{% endif %}
+            {% if adverse_event[0].patient.reaction[0].reactionoutcome %}<h2>Reaction Outcome</h2>{{ adverse_event[0].patient.reaction[0].reactionoutcome}}{% endif %}
 
           </div>
         </div>
@@ -111,7 +140,6 @@
 </div>
 </footer>
 
-
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://nvd3.org/assets/js/nv.d3.js" charset="utf-8"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -119,11 +147,6 @@
 <script src="{{ url_for('static', filename='js/vendor/snap.svg.js') }}"></script>
 <script src="{{ url_for('static', filename='js/vendor/pizza.js') }}"></script>
 
-
-<script>
-  data = {{ adverse_event|tojson|safe }};
-  makeAdverseEvent(data,".json-viewer");
-</script>
 
 <script> 
   function search() {

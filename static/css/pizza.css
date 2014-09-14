@@ -18,8 +18,11 @@
 
 
 svg {
-  width: 100%;
-  height: auto; }
+  width: 75%;
+  height: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 .tooltip {
   margin-left: -5px;
@@ -30,4 +33,5 @@ svg {
 ul[data-pie-id] {
   list-style: none;
   padding: 10px; 
+  text-align: center;
 }
