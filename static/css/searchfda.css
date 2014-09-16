@@ -293,3 +293,7 @@ div[id="pie-chart"] text {
 ul[data-pie-id="pie-chart"] li {
   text-transform: lowercase;
 }
+
+.sub-nav {
+	margin-bottom: 5px;
+}

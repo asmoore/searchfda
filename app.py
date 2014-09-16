@@ -44,12 +44,11 @@ def home():
 
 
 #Autocomplete
-@app.route('/autocomplete', methods=['POST'])
+@app.route('/autocomplete')
 def autocomplete():
-    data = request.data
-    search_results = utils.fetch_search(data)
-    return search_results[0]["name"]
-    #return search_results
+    search_input = request.args.get('search_input',"None",type=str)
+    search_results = utils.fetch_search(search_input,1)
+    return jsonify(result=search_results[0])
 
 
 #Search page

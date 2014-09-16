@@ -23,12 +23,14 @@
 
     <div class="row" id="results-row">
       <div class="large-12 columns">
-
-      <ul>
-        <li class="tab-title"><a href='/recall/{{ searchterm }}/count=openfda.manufacturer_name.exact/search=openfda.substance_name:"{{ searchterm }}"/report=1' id="adverse-link">Recalls</a></li>
-        <li class="tab-title active"><a href='/adverse/{{ searchterm }}/count=patient.drug[0].drugindication.exact/search=patient.drug[0].medicinalproduct:"{{ searchterm }}"/report=1' id="recall-link">Adverse Events</a></li>
-        <li class="tab-title"><a href="#panel2-3" id="label-link">Labels (not available yet)</a></li>
-      </ul>
+    
+        <dl class="sub-nav">
+          <ul>
+            <dd><a href='/recall/{{ searchterm }}/count=openfda.manufacturer_name.exact/search=openfda.substance_name:"{{ searchterm }}"/report=1' id="adverse-link">Recalls</a></dd>
+            <dd><a href='/adverse/{{ searchterm }}/count=patient.drug[0].drugindication.exact/search=patient.openfda.substance_name:"{{ searchterm }}"/report=1' id="recall-link">Adverse Events</a></dd>
+            <dd><a href='/label/{{ searchterm }}/count=patient.drug[0].drugindication.exact/search=openfda.substance_name:"{{ searchterm }}"/report=1' id="label-link">Labels</a></dd>
+          </ul>
+        </dl>
 
       <div id="panel2-1">
         <h4>Adverse Events</h4>
@@ -81,36 +83,37 @@
             </ul>
             </div>
 
-            {% if adverse_event[0].safetyreport %}<h2>Safety Report</h2>{{ adverse_event[0].safetyreport}}{% endif %}
-            {% if adverse_event[0].safetyreportversion %}<h2>Safety Report Version</h2>{{ adverse_event[0].safetyreportversion}}{% endif %}
-            {% if adverse_event[0].receivedate %}<h2>Receive Date</h2>{{ adverse_event[0].receivedate}}{% endif %}
-            {% if adverse_event[0].serious %}<h2>Serious</h2>{{ adverse_event[0].serious}}{% endif %}
-            {% if adverse_event[0].occurcountry %}<h2>Country</h2>{{ adverse_event[0].occurcountry}}{% endif %}
-            {% if adverse_event[0].patient.patientsex %}<h2>Patient Sex</h2>{{ adverse_event[0].patient.patientsex}}{% endif %}
-            {% if adverse_event[0].patient.patientweight %}<h2>Patient Weight</h2>{{ adverse_event[0].patient.patientweight}} kg{% endif %}
-            {% if adverse_event[0].patient.drug[0].drugdosageform %}<h2>Drug Dosage Form</h2>{{ adverse_event[0].patient.drug[0].drugdosageform}}{% endif %}
-            {% if adverse_event[0].patient.drug[0].drugbatchnum %}<h2>Drug Batch Number</h2>{{ adverse_event[0].patient.drug[0].drugbatchnum}}{% endif %}
-            {% if adverse_event[0].patient.drug[0].drugdosagetext %}<h2>Drug Dosage</h2>{{ adverse_event[0].patient.drug[0].drugdosagetext}}{% endif %}
-            {% if adverse_event[0].patient.drug[0].drugenddate %}<h2>Drug End Date</h2>{{ adverse_event[0].patient.drug[0].drugenddate}}{% endif %}
-            {% if adverse_event[0].patient.drug[0].drugindication %}<h2>Drug Indication</h2>{{ adverse_event[0].patient.drug[0].drugindication}}{% endif %}
-            {% if adverse_event[0].patient.drug[0].drugstartdate %}<h2>Drug Start Date</h2>{{ adverse_event[0].patient.drug[0].drugstartdate}}{% endif %}
-            {% if adverse_event[0].patient.drug[0].medicinalproduct %}<h2>Medicinal Product</h2>{{ adverse_event[0].patient.drug[0].medicinalproduct}}{% endif %}
+{% if adverse_event[0].safetyreport %}<h5>Safety Report</h5>{{ adverse_event[0].safetyreport}}{% endif %}
+            {% if adverse_event[0].safetyreportversion %}<h5>Safety Report Version</h5>{{ adverse_event[0].safetyreportversion}}{% endif %}
+            {% if adverse_event[0].receivedate %}<h5>Receive Date</h5>{{ adverse_event[0].receivedate}}{% endif %}
+            {% if adverse_event[0].serious %}<h5>Serious</h5>{{ adverse_event[0].serious}}{% endif %}
+            {% if adverse_event[0].occurcountry %}<h5>Country</h5>{{ adverse_event[0].occurcountry}}{% endif %}
+            {% if adverse_event[0].patient.patientsex %}<h5>Patient Sex</h5>{{ adverse_event[0].patient.patientsex}}{% endif %}
+            {% if adverse_event[0].patient.patientweight %}<h5>Patient Weight</h5>{{ adverse_event[0].patient.patientweight}} kg{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugdosageform %}<h5>Drug Dosage Form</h5>{{ adverse_event[0].patient.drug[0].drugdosageform}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugbatchnum %}<h5>Drug Batch Number</h5>{{ adverse_event[0].patient.drug[0].drugbatchnum}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugdosagetext %}<h5>Drug Dosage</h5>{{ adverse_event[0].patient.drug[0].drugdosagetext}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugenddate %}<h5>Drug End Date</h5>{{ adverse_event[0].patient.drug[0].drugenddate}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugindication %}<h5>Drug Indication</h5>{{ adverse_event[0].patient.drug[0].drugindication}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].drugstartdate %}<h5>Drug Start Date</h5>{{ adverse_event[0].patient.drug[0].drugstartdate}}{% endif %}
+            {% if adverse_event[0].patient.drug[0].medicinalproduct %}<h5>Medicinal Product</h5>{{ adverse_event[0].patient.drug[0].medicinalproduct}}{% endif %}
             {% if adverse_event[0].patient.drug[0].openfda %}
-              {% if adverse_event[0].patient.drug[0].openfda.spl_id[0] %}<h2>SPL ID</h2>{{ adverse_event[0].patient.drug[0].openfda.spl_id[0]}}{% endif 
+              {% if adverse_event[0].patient.drug[0].openfda.spl_id[0] %}<h5>SPL ID</h5>{{ adverse_event[0].patient.drug[0].openfda.spl_id[0]}}{% endif 
               %}
-              {% if adverse_event[0].patient.drug[0].openfda.product_ndc[0] %}<h2>Product NDC</h2>{{ adverse_event[0].patient.drug[0].openfda.product_ndc[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.route[0] %}<h2>Route</h2>{{ adverse_event[0].patient.drug[0].openfda.route[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.substance_name[0] %}<h2>Substance Name</h2>{{ adverse_event[0].patient.drug[0].openfda.substance_name[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.rxcui[0] %}<h2>RXCUI</h2>{{ adverse_event[0].patient.drug[0].openfda.rxcui[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.spl_set_id[0] %}<h2>SPL Set ID</h2>{{ adverse_event[0].patient.drug[0].openfda.spl_set_id[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.package_ndc[0] %}<h2>Package NDC</h2>{{ adverse_event[0].patient.drug[0].openfda.package_ndc[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.product_type[0] %}<h2>Product Type</h2>{{ adverse_event[0].patient.drug[0].openfda.product_type[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.generic_name[0] %}<h2>Generic Name</h2>{{ adverse_event[0].patient.drug[0].openfda.generic_name[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.manufacturer_name[0] %}<h2>Manufacturer</h2>{{ adverse_event[0].patient.drug[0].openfda.manufacturer_name[0]}}{% endif %}
-              {% if adverse_event[0].patient.drug[0].openfda.brand_name[0] %}<h2>Brand Name</h2>{{ adverse_event[0].patient.drug[0].openfda.brand_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.product_ndc[0] %}<h5>Product NDC</h5>{{ adverse_event[0].patient.drug[0].openfda.product_ndc[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.route[0] %}<h5>Route</h5>{{ adverse_event[0].patient.drug[0].openfda.route[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.substance_name[0] %}<h5>Substance Name</h5>{{ adverse_event[0].patient.drug[0].openfda.substance_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.rxcui[0] %}<h5>RXCUI</h5>{{ adverse_event[0].patient.drug[0].openfda.rxcui[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.spl_set_id[0] %}<h5>SPL Set ID</h5>{{ adverse_event[0].patient.drug[0].openfda.spl_set_id[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.package_ndc[0] %}<h5>Package NDC</h5>{{ adverse_event[0].patient.drug[0].openfda.package_ndc[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.product_type[0] %}<h5>Product Type</h5>{{ adverse_event[0].patient.drug[0].openfda.product_type[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.generic_name[0] %}<h5>Generic Name</h5>{{ adverse_event[0].patient.drug[0].openfda.generic_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.manufacturer_name[0] %}<h5>Manufacturer</h5>{{ adverse_event[0].patient.drug[0].openfda.manufacturer_name[0]}}{% endif %}
+              {% if adverse_event[0].patient.drug[0].openfda.brand_name[0] %}<h5>Brand Name</h5>{{ adverse_event[0].patient.drug[0].openfda.brand_name[0]}}{% endif %}
             {% endif %}
-            {% if adverse_event[0].patient.reaction[0].reactionmeddrapt %}<h2>Reaction</h2>{{ adverse_event[0].patient.reaction[0].reactionmeddrapt}}{% endif %}
-            {% if adverse_event[0].patient.reaction[0].reactionoutcome %}<h2>Reaction Outcome</h2>{{ adverse_event[0].patient.reaction[0].reactionoutcome}}{% endif %}
+            {% if adverse_event[0].patient.reaction[0].reactionmeddrapt %}<h5>Reaction</h5>{{ adverse_event[0].patient.reaction[0].reactionmeddrapt}}{% endif %}
+            {% if adverse_event[0].patient.reaction[0].reactionoutcome %}<h5>Reaction Outcome</h5>{{ adverse_event[0].patient.reaction[0].reactionoutcome}}{% endif %}
+
 
           </div>
         </div>

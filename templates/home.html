@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+
 <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/webicons.css') }}" />
 
@@ -20,7 +21,8 @@
   <div class="search-container">
     <div class="small-10 columns">
       <input type="text" id="search-input" list="json-datalist" placeholder="Search for..." onkeydown="if (event.keyCode == 13) { search()}">
-      <datalist id="json-datalist"></datalist>
+      <datalist id="json-datalist">
+      </datalist>
     </div>
     <div class="small-2 columns">
       <span class="postfix" onclick="search()">Search</span>
@@ -36,23 +38,22 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
+  $(function() {
+      $('#search-input').on('input', function() { 
+        $.getJSON('/autocomplete', {
+          search_input: $('input[id="search-input"]').val()
+        }, function(data) {
+          var options = '';
+          for(var i = 0; i < data.result.length; i++)
+            options += '<option value="'+data.result[i].name+'" />';
 
-  // Get the <datalist> and <input> elements.
-  $('#search-input').on('input', function() { 
-    $.ajax({
-      url: "/autocomplete",
-      type: 'POST',
-      data: $(this).val(),
-      contentType: 'application/json',
-      success: function(result) {
-        //only returns one value right now. Can't get list working.
-        var options = '<option value="'+result+'" />';
-        div = document.getElementById('json-datalist');
-        div.innerHTML = options;
-      }
+          document.getElementById('json-datalist').innerHTML = options;
+        });
+        return false;
+      });
     });
-  });
-
 </script>
 
+
 {% endblock %}
+
